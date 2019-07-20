@@ -2,5 +2,5 @@
 
 # Used Library
 
-pip install django-phonenumber-field
-pip install phonenumbers
+- pip install django-phonenumber-field
+- pip install phonenumbers
