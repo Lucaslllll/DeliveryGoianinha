@@ -2,7 +2,7 @@
 
 # Used Frameworks
 - Django
-- React-Native
+- React Native
 
 # Used Library
 
