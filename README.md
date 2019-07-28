@@ -9,6 +9,7 @@
 
 - pip install django-phonenumber-field
 - pip install phonenumbers
+- pip install djangorestframework
 
 # Install Dependencies
 
