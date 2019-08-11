@@ -1,3 +1,7 @@
+import React from "react";
+
+import { View } from "react-native";
+
 import {
   createAppContainer,
   createSwitchNavigator,
@@ -11,24 +15,66 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Main from './pages/main';
 import Account from './pages/Account';
+import Icon from "react-native-vector-icons/Ionicons";
 
 const LoginStack = createStackNavigator({
   beforeLogin: beforeLogin,
   Login: Login,
   Register: Register
 });
-
 const HomeStack = createMaterialBottomTabNavigator(
   {
-    Main: Main,
-    Account: Account,
-    Login: Login,
+    Main: {
+      screen: Main,
+      navigationOptions: {
+        tabBarLabel: 'Home',
+        tabBarIcon: ({ tintColor }) => (
+          <View>
+            <Icon style={[{ color: tintColor }]} size={25} name={'ios-home'} />
+          </View>
+        ),
+        tabBarColor: '#CB4335',
+      },
+    },
+    Account: {
+      screen: Account,
+      navigationOptions: {
+        tabBarLabel: 'Account',
+        tabBarIcon: ({ tintColor }) => (
+          <View>
+            <Icon
+              style={[{ color: tintColor }]}
+              size={25}
+              name={'ios-person'}
+            />
+          </View>
+        ),
+        tabBarColor: '#2980B9',
+      },
+    },
+    Login: {
+      screen: Login,
+      navigationOptions: {
+        tabBarLabel: "Search",
+        tabBarIcon: ({ tintColor }) => (
+          <View>
+            <Icon
+              style={[{ color: tintColor }]}
+              size={25}
+              name={'ios-search'}
+            />
+          </View>
+        ),
+        tabBarColor: '#CB4335',
+      }
+    },
   },
   {
+    shifting: true,
     initialRouteName: 'Main',
-    activeColor: '#f0edf6',
-    inactiveColor: '#3e2465',
-    barStyle: { backgroundColor: '#694fad' },
+    activeColor: '#000',
+    inactiveColor: '#FFF',
+    barStyle: { backgroundColor: '#CB4335' },
   }
 );
 

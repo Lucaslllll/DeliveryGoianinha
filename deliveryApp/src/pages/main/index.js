@@ -1,32 +1,27 @@
-import React, { Component } from "react";
-import api from "../../services/api";
+import React, { Component } from 'react';
+import api from '../../services/api';
 
-import styles from "./styles";
+import styles from './styles';
 
-import TopNav from "../../components/topNav";
-import Icon from "react-native-vector-icons/MaterialIcons";
-import RatingStar from "../../components/ratingStar";
+import TopNav from '../../components/topNav';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import RatingStar from '../../components/ratingStar';
 
-import { Image, Button } from "react-native-elements";
+import { Image, Button } from 'react-native-elements';
 
 import {
   View,
   Text,
   FlatList,
   TouchableOpacity,
-  ActivityIndicator
-} from "react-native";
+  ActivityIndicator,
+} from 'react-native';
 
 export default class Main extends Component {
-  static navigationOptions = {
-    title: null,
-    tabBarIcon: <Icon name="restaurant-menu" />,
-  };
-
   state = {
     productInfo: {},
     docs: [],
-    page: 1
+    page: 1,
   };
 
   componentDidMount() {
@@ -50,7 +45,7 @@ export default class Main extends Component {
           style={styles.imageDelivery}
           source={{
             uri:
-              "https://dmmzi9kl6wusl.cloudfront.net/obbaacaiuberlandia38/uploads/7344441010e0fe659a1eff8d4a459100.png"
+              'https://dmmzi9kl6wusl.cloudfront.net/obbaacaiuberlandia38/uploads/7344441010e0fe659a1eff8d4a459100.png',
           }}
           PlaceholderContent={<ActivityIndicator />}
         />
@@ -65,7 +60,7 @@ export default class Main extends Component {
       </View>
       <TouchableOpacity
         style={styles.productButton}
-        onPress={() => navigation.navigate("About")}
+        onPress={() => navigation.navigate('About')}
       >
         <Icon name="restaurant-menu" style={styles.IconCardapio} />
         <Text style={styles.productButtonText}>CARDÁPIO</Text>
