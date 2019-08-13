@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-colorTheme = "red";
+colorTheme = "#e3672b";
 
 const styles = StyleSheet.create({
   container: {
@@ -94,4 +94,3 @@ const styles = StyleSheet.create({
 });
 
 export default styles;
-

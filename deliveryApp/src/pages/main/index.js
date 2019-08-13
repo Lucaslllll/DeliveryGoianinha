@@ -60,7 +60,7 @@ export default class Main extends Component {
       </View>
       <TouchableOpacity
         style={styles.productButton}
-        onPress={() => navigation.navigate('About')}
+        onPress={() => navigation.navigate('Delivery')}
       >
         <Icon name="restaurant-menu" style={styles.IconCardapio} />
         <Text style={styles.productButtonText}>CARDÁPIO</Text>
@@ -80,7 +80,7 @@ export default class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TopNav titleHeader="HOME" isBack={false} />
+        <TopNav titleHeader="HOME" isBack={false} colorBack="#e3672b" />
         <FlatList
           contentContainerStyle={styles.list}
           data={this.state.docs}

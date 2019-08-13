@@ -16,6 +16,9 @@ import Register from './pages/Register';
 import Main from './pages/main';
 import Account from './pages/Account';
 import Icon from "react-native-vector-icons/Ionicons";
+import Search from "./pages/search";
+import DeliveryPage from "./pages/deliveryPage";
+import TopNav from "./components/topNav";
 
 const LoginStack = createStackNavigator({
   beforeLogin: beforeLogin,
@@ -33,7 +36,7 @@ const HomeStack = createMaterialBottomTabNavigator(
             <Icon style={[{ color: tintColor }]} size={25} name={'ios-home'} />
           </View>
         ),
-        tabBarColor: '#CB4335',
+        tabBarColor: '#e3672b',
       },
     },
     Account: {
@@ -52,10 +55,10 @@ const HomeStack = createMaterialBottomTabNavigator(
         tabBarColor: '#2980B9',
       },
     },
-    Login: {
-      screen: Login,
+    Search: {
+      screen: Search,
       navigationOptions: {
-        tabBarLabel: "Search",
+        tabBarLabel: 'Buscar',
         tabBarIcon: ({ tintColor }) => (
           <View>
             <Icon
@@ -65,22 +68,24 @@ const HomeStack = createMaterialBottomTabNavigator(
             />
           </View>
         ),
-        tabBarColor: '#CB4335',
-      }
+        tabBarColor: '#e3672b',
+      },
     },
   },
   {
     shifting: true,
-    initialRouteName: 'Main',
+    initialRouteName: 'Account',
     activeColor: '#000',
     inactiveColor: '#FFF',
-    barStyle: { backgroundColor: '#CB4335' },
+    barStyle: { backgroundColor: '#e3672b' },
   }
 );
 
 const MainStack = createSwitchNavigator({
+  Delivery: DeliveryPage,
   Login: LoginStack,
   Main: HomeStack,
+  TopNav: TopNav
 });
 
-export default createAppContainer(HomeStack);
+export default createAppContainer(MainStack);

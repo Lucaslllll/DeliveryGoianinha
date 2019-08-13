@@ -1,13 +1,10 @@
 import { StyleSheet } from "react-native";
 
-colorTheme = "red";
-
 const styles = StyleSheet.create({
   containerHeaderStyle: {
     justifyContent: 'space-between',
     alignItems: 'center',
-    flexDirection: 'row',
-    backgroundColor: colorTheme
+    flexDirection: 'row'
   },
   headerTitleStyle: {
     fontSize: 20,
@@ -32,4 +29,3 @@ const styles = StyleSheet.create({
 });
 
 export default styles;
-
