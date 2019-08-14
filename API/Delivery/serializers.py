@@ -5,7 +5,7 @@ from .models import Conta, Restaurante, Pedido, Pedido_Restaurante, Comentario
 class ContaSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Conta
-		fields = '__all__'
+		fields = ['cpf', 'localizacao']
 
 class RestauranteSerializer(serializers.ModelSerializer):
 	class Meta:
