@@ -2,6 +2,7 @@ import React from 'react';
 
 import './style.css';
 
+
 import {
     Container,
     Collapse,
@@ -26,6 +27,7 @@ export default class NavBar extends React.Component {
         };
 
     }
+
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
@@ -45,20 +47,25 @@ export default class NavBar extends React.Component {
                                         Inicio
                                     </NavLink>
                                 </NavItem>
-                                <UncontrolledDropdown nav inNavbar>
-                                    <DropdownToggle nav caret className="text-color">
-                                        Perfil
-                                    </DropdownToggle>
-                                    <DropdownMenu right>
-                                        <DropdownItem>
-                                            Configurações
-                                        </DropdownItem>
-                                        <DropdownItem divider />
-                                        <DropdownItem className="exit">
-                                            <div>Sair</div>
-                                        </DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
+                                <NavItem>
+                                    <NavLink href="#" className="text-color button-login">
+                                        Login
+                                    </NavLink>
+                                </NavItem>
+                                {/*<UncontrolledDropdown nav inNavbar>*/}
+                                {/*    <DropdownToggle nav caret className="text-color">*/}
+                                {/*        Perfil*/}
+                                {/*    </DropdownToggle>*/}
+                                {/*    <DropdownMenu right>*/}
+                                {/*        <DropdownItem>*/}
+                                {/*            Configurações*/}
+                                {/*        </DropdownItem>*/}
+                                {/*        <DropdownItem divider />*/}
+                                {/*        <DropdownItem className="exit">*/}
+                                {/*            <div>Sair</div>*/}
+                                {/*        </DropdownItem>*/}
+                                {/*    </DropdownMenu>*/}
+                                {/*</UncontrolledDropdown>*/}
                             </Nav>
                         </Collapse>
                     </Container>

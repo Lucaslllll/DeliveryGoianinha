@@ -1,0 +1,52 @@
+.containerFooter{
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: #e3672b;
+
+}
+
+.containerSocial{
+    display: flex;
+}
+
+
+.containerSocial > a {
+    margin: 0px 5px 10px 5px;
+}
+
+.footer-text{
+    font-style: italic;
+    padding: 5px 0;
+    color: #FFF;
+    font-weight: bold;
+}
+
+
+.facebook{
+    transition: 0.3s;
+    color: #FFF;
+    font-size: 33px;
+    border-radius: 5px;
+}
+
+
+.facebook:hover{
+    text-decoration: none;
+    color: #2471A3;
+    background: #FFF;
+}
+
+.instagram{
+    color: #E1306C;
+    transition: 0.3s;
+    font-size: 33px;
+    border-radius: 5px;
+}
+
+.instagram:hover{
+    color: #FFF;
+    text-decoration: none;
+    background: #E1306C;
+}

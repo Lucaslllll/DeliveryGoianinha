@@ -1,13 +1,19 @@
 import React from 'react';
 
-import { Col } from 'reactstrap';
-
 import './styles.css';
 
+import imga from '../../assets/img/cell.png';
+
 export const Wallpaper = () => (
-    <Col xs="6" lg="6">
-        <img className="img-wallpaper" src="https://businessfirstfamily.com/wp-content/uploads/2015/10/fast-food-industry-trends-basket.jpg" />
-    </Col>
+    <div className="img-wallpaper">
+        <div>
+           <h3>DeliveryApp</h3>
+           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis cupiditate delectus deleniti dignissimos dolor dolores dolorum excepturi explicabo facilis in laborum magni, nesciunt, pariatur perspiciatis quo tempore veritatis voluptas? At.</p>
+        </div>
+        <div>
+            <img src="imga" alt="imagem do celular"/>
+        </div>
+    </div>
 )
 
 export default Wallpaper;
