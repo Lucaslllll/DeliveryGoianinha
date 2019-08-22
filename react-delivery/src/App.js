@@ -3,7 +3,6 @@ import React from 'react';
 import NavBar from './components/NavBar';
 import Wallpaper from './components/Wallpaper';
 import Login from './components/Login';
-import Footer from './components/footer';
 
 import './App.css';
 
@@ -18,9 +17,6 @@ function App() {
           </div>
           <div className="login">
               <Login />
-          </div>
-          <div className="footer">
-                <Footer />
           </div>
       </div>
   );

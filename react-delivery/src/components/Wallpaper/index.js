@@ -2,16 +2,22 @@ import React from 'react';
 
 import './styles.css';
 
-import imga from '../../assets/img/cell.png';
+import cellPhone from '../../assets/img/cell.png';
+import linkAndroid from '../../assets/img/link-android.png';
 
 export const Wallpaper = () => (
     <div className="img-wallpaper">
-        <div>
-           <h3>DeliveryApp</h3>
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis cupiditate delectus deleniti dignissimos dolor dolores dolorum excepturi explicabo facilis in laborum magni, nesciunt, pariatur perspiciatis quo tempore veritatis voluptas? At.</p>
-        </div>
-        <div>
-            <img src="imga" alt="imagem do celular"/>
+        <div className="gridBattle">
+            <div className="infoCellContainer">
+                <div className="infoCell animated flipInX slower">
+                   <h3>DeliveryApp</h3>
+                    <p><span className="aspas">"</span>DeliveryApp! O delivery de Goianinha no seu celular!<span className="aspas">"</span></p>
+                    <a href="#"><img className="linkAndroid" src={linkAndroid} /></a>
+                </div>
+            </div>
+            <div className="cellContainer">
+                <img src={cellPhone} className="cell  animated bounceInDown slower" alt="imagem do celular"/>
+            </div>
         </div>
     </div>
 )

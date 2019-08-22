@@ -4,11 +4,20 @@
   grid-template-rows: 5vh 87vh 8vh;
   grid-template-areas: "menu menu"
                   "wallpaper login"
-                  "footer footer";
+                  "wallpaper login";
 }
 
 .menu{
   grid-area: menu;
+}
+
+/*font da logo*/
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap');
+
+.logo{
+  font-family: 'Alfa Slab One', cursive;
+  text-transform: capitalize;
+  font-weight: normal;
 }
 
 .wallpaper {

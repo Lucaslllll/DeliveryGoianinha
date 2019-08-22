@@ -1,10 +1,11 @@
 .containerFooter{
-    padding: 20px 0;
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     background: #e3672b;
-
+    justify-content: space-between;
+    padding: 0px 20px;
+    height: 100%;
 }
 
 .containerSocial{
@@ -13,7 +14,7 @@
 
 
 .containerSocial > a {
-    margin: 0px 5px 10px 5px;
+    margin: 0px 5px;
 }
 
 .footer-text{

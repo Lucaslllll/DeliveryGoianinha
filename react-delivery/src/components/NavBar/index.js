@@ -2,7 +2,6 @@ import React from 'react';
 
 import './style.css';
 
-
 import {
     Container,
     Collapse,
@@ -38,7 +37,7 @@ export default class NavBar extends React.Component {
             <div>
                 <Navbar light expand="md" className="bg-menu" >
                     <Container>
-                        <NavbarBrand href="/" className="text-color">DeliveryApp</NavbarBrand>
+                        <NavbarBrand href="/" className="text-color logo">DeliveryApp</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto item" navbar>
@@ -48,7 +47,7 @@ export default class NavBar extends React.Component {
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="#" className="text-color button-login">
+                                    <NavLink href="#" className="text-color">
                                         Login
                                     </NavLink>
                                 </NavItem>

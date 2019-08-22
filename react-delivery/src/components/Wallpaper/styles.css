@@ -1,3 +1,5 @@
+
+
 .img-wallpaper {
     height: 100%;
     width: 100%;
@@ -6,4 +8,125 @@
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center;
+}
+
+.gridBattle{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "info cell";
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.cell{
+    height: 420px;
+    width: 225px;
+}
+
+.cellContainer{
+    grid-area: cell;
+    width: 100%;
+    padding: 0px 20px;
+    align-self: center;
+    justify-self: center;
+    animation-name: cellMove;
+    animation-duration: 1.3s;
+    animation-iteration-count: infinite;
+    position: relative;
+    animation-direction: alternate;
+}
+
+@keyframes cellMove {
+    0% {
+        top: 8px;
+    }
+    100% {
+        top: -8px;
+    }
+}
+
+/*font do infocell*/
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap');
+
+.infoCell{
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px 20px;
+}
+
+.aspas{
+    font-size: 20px;
+}
+
+.infoCell h3{
+    font-size: 1.8em;
+    border-bottom: 1px solid #FFF;
+    padding-bottom: 5px;
+    font-family: 'Alfa Slab One', cursive;
+
+}
+
+.infoCell p {
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+.infoCellContainer{
+    grid-area: info;
+    width: 85%;
+    justify-self: center;
+    align-self: center;
+}
+
+
+.linkAndroid{
+    height: 50px;
+}
+
+/*responsive*/
+
+/*DESKTOP*/
+
+@media only screen and (max-width: 1300px){
+    .cell{
+        height: 380px;
+        width: 205px;
+    }
+
+    .infoCell h3 {
+        font-size: 1.6em;
+    }
+
+    .infoCell p {
+        font-size: 0.9em;
+    }
+
+    .linkAndroid{
+        height: 45px;
+    }
+
+
+}
+
+
+/*Notebook*/
+@media only screen and (max-width: 1098px){
+    .cell{
+        height: 320px;
+        width: 175px;
+    }
+
+    .infoCell h3 {
+        font-size: 1.4em;
+    }
+
+    .infoCell p {
+        font-size: 0.8em;
+    }
+    .linkAndroid{
+        height: 40px;
+    }
+
 }
