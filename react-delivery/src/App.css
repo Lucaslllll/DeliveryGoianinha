@@ -28,6 +28,24 @@
 .login {
   grid-area: login;
   align-self: center;
+  height: 100%;
+  background: url(../src/assets/img/fundo_louco.png);
+  background-size: 100vh 45vh;
+  background-position: bottom;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  animation-name: backMove;
+  animation-duration: 1.5s;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+} 
+@keyframes backMove{
+    from{
+      background-size: 100vh 0vh;
+    }
+    to{
+      background-size: 100vh 45vh;
+    }
 }
 
 .footer {

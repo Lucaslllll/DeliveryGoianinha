@@ -3,6 +3,8 @@ import React from 'react';
 import NavBar from './components/NavBar';
 import Wallpaper from './components/Wallpaper';
 import Login from './components/Login';
+import beforeLogin from './components/beforeLogin';
+
 
 import './App.css';
 
@@ -21,5 +23,6 @@ function App() {
       </div>
   );
 }
+
 
 export default App;

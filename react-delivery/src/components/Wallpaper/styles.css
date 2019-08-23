@@ -37,10 +37,13 @@
     animation-direction: alternate;
 }
 
+
+
 @keyframes cellMove {
     0% {
         top: 8px;
     }
+
     100% {
         top: -8px;
     }
