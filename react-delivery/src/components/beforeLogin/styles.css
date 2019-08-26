@@ -1,4 +1,56 @@
 .containerBefore {
 	display: flex;
 	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.btn-login-before{
+    background: #e3672b;
+    padding: 5px 80px;
+    color: #FFF;
+    transition: 0.2s;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.btn-login-before:hover{
+	background: #e3612b;
+	text-decoration: none;
+	color: #FFF;
+}
+
+
+.link-register{
+	color: grey;
+	padding: 5px 0px;
+	transition: 0.2s;
+}
+
+
+.link-register:hover{
+	color: #999;
+	text-decoration: none;
+}
+
+
+.containerSocial{
+	padding: 40px 0;
+}
+
+.facebook-login{
+	background: #3C5A99;
+	color: #FFF;
+	text-transform: capitalize;
+	padding: 10px 110px;
+	border-radius: 20px;
+	font-weight: bold;
+	transition: 0.1s;
+}
+
+.facebook-login:hover{
+	color: #FFF;
+	background: #3C4A99;
+	text-decoration: none;
 }

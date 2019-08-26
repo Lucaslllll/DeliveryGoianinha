@@ -1,20 +1,29 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
 
 import './styles.css';
 
-export default class beforeLogin extends React.Component{
-	render(){
+function beforeLogin(){
+
+		function handleFacebook(){
+			alert('Indisponível');
+		}
+
 		return(
 			<>
 				<div className="containerBefore">
-					<a className="btn-login-before" href="">
+					<Link className="btn-login-before" to="/Login">
 						Entrar
-					</a>
-					<a className="link-register">Não tenho uma conta</a>
+					</Link>
+					<Link to="/Register" className="link-register">Não tenho uma conta</Link>
+					<div className="containerSocial">
+						<Link onClick={() => handleFacebook()} className="facebook-login">Facebook</Link>
+					</div>
 				</div>
 			</>
 
 		);
-	}
 }
+
+export default beforeLogin;

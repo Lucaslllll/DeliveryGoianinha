@@ -7,16 +7,12 @@
 }
 
 .text-color {
-    color: #DADADA !important;
-    transition: 0.2s;
-}
-
-.text-color:hover {
-    color: #FFFFFF !important;
+    color: #FFF !important;
 }
 
 .item > li {
     padding: 0 5px;
+    text-align: center;
 }
 
 
@@ -27,4 +23,8 @@
 .exit > div {
     color: #FFFFFF;
     text-align: center;
+}
+
+.actived{
+	border-bottom: 3px solid #FFF;
 }

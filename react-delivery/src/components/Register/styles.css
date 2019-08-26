@@ -1,0 +1,51 @@
+.containerForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
+}
+
+
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.InputLogin {
+    border-radius: 4px;
+    border: 1px solid #DADADA;
+    padding: 7px 30px;
+    margin: 4px 0;
+    text-align: center;
+}
+
+.btn-login {
+    background: #e3672b;
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    width: 50%;
+    color: #FFF;
+    font-weight: bold;
+    transition: 0.2s;
+    margin: 3px 0px;
+    font-size: 14px;
+}
+
+.btn-login:hover {
+    background: #e3612b;
+}
+
+.noAccount{
+    color: grey;
+    padding: 5px 0px;
+    transition: 0.1s;
+}
+
+.noAccount:hover {
+    color: #999;
+    text-decoration: none;
+}

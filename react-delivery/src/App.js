@@ -1,8 +1,7 @@
 import React from 'react';
 
 import NavBar from './components/NavBar';
-import Wallpaper from './components/Wallpaper';
-import Login from './components/Login';
+import Login from './screen/Login';
 import beforeLogin from './components/beforeLogin';
 
 
@@ -14,11 +13,8 @@ function App() {
           <div className="menu">
             <NavBar />
           </div>
-          <div className="wallpaper">
-              <Wallpaper />
-          </div>
-          <div className="login">
-              <Login />
+          <div>
+            <Login />
           </div>
       </div>
   );

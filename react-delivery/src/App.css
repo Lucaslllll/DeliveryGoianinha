@@ -1,65 +1,15 @@
 .container-app{
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 5vh 87vh 8vh;
-  grid-template-areas: "menu menu"
-                  "wallpaper login"
-                  "wallpaper login";
+  grid-template-columns: 1fr;
+  grid-template-rows: 5vh 95vh;
+  grid-template-areas: "menu"
+                  "content";
 }
 
 .menu{
   grid-area: menu;
 }
 
-/*font da logo*/
-@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap');
-
-.logo{
-  font-family: 'Alfa Slab One', cursive;
-  text-transform: capitalize;
-  font-weight: normal;
-}
-
-.wallpaper {
-  grid-area: wallpaper;
-  background: #CB4335;
-}
-
-.login {
-  grid-area: login;
-  align-self: center;
-  height: 100%;
-  background: url(../src/assets/img/fundo_louco.png);
-  background-size: 100vh 45vh;
-  background-position: bottom;
-  background-attachment: scroll;
-  background-repeat: no-repeat;
-  animation-name: backMove;
-  animation-duration: 1.5s;
-  animation-direction: alternate;
-  animation-iteration-count: 1;
-} 
-@keyframes backMove{
-    from{
-      background-size: 100vh 0vh;
-    }
-    to{
-      background-size: 100vh 45vh;
-    }
-}
-
-.footer {
-  grid-area: footer;
-}
-
-@media only screen and (max-width: 990px) {
-  .wallpaper{
-    opacity: 0;
-  }
-
-  .login{
-    grid-column: 1 / span 2;
-  }
-
-
+.content{
+  grid-area: content;
 }
