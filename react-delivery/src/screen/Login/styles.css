@@ -1,6 +1,6 @@
 .containerLogin{
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 95vh;
   grid-template-areas: "wallpaper login";
   overflow: hidden;

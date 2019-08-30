@@ -16,7 +16,7 @@ export const Wallpaper = () => (
                 </div>
             </div>
             <div className="cellContainer animated bounceInDown slower">
-                <img src={cellPhone} className="cell animated pulse slower infinite" alt="imagem do celular"/>
+                <img src={cellPhone} className="cell" alt="imagem do celular"/>
             </div>
         </div>
     </div>
