@@ -1,22 +1,23 @@
 import React from 'react';
 
 import NavBar from './components/NavBar';
-import Login from './screen/Login';
-import beforeLogin from './components/beforeLogin';
 
+import Routes from './routes';
 
 import './App.css';
 
 function App() {
   return (
+    <div className="body">
       <div className="container-app">
           <div className="menu">
             <NavBar />
           </div>
           <div>
-            <Login />
+            <Routes />
           </div>
       </div>
+    </div>
   );
 }
 

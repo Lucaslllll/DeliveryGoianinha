@@ -10,7 +10,7 @@ function Login() {
                 <form className="form">
                     <input placeholder="E-mail" type="text" className="InputLogin" name="name" />
                     <input placeholder="Senha" type="text" className="InputLogin" name="name" />
-                    <input className="btn-login" type="submit" value="Entrar" />
+                    <Link className="btn-login" to="/Home">Entrar</Link>
                     <Link className="noAccount" to="/Register">Não tenho uma conta</Link>
                 </form>
             </div>

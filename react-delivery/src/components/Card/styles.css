@@ -1,0 +1,93 @@
+.containerCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 25vw;
+  text-align: center;
+  border-radius: 5px;
+  background: #FFF;
+}
+
+.containerCard .containerStatus{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  padding: 5px 5px 0 0;
+}
+
+.containerCard .status{
+  background: #2ECC71;
+  border-radius: 3px;
+  padding: 5px;
+  color: #FFF;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.containerCard .containerImg{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.containerCard .img-delivery{
+  width: 133px;
+  height: 133px;
+}
+
+.containerCard .containerDesc{
+  padding: 5px 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  line-height: 20px;
+}
+
+
+
+.containerCard .containerButton {
+  padding: 0 0 20px 0;
+}
+
+.containerCard .containerRating {
+  padding: 0 0 12px 0;
+  font-size: 30px;
+}
+
+.iconRatingempty{
+  color: #F1C40F;
+}
+
+.iconRatingfull{
+  color: #F1C40F;
+}
+
+.containerButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-delivery{
+  background: #e3672b;
+  border-radius: 5px;
+  padding: 10px 0;
+  transition: 0.2s;
+  width: 50%;
+}
+.restaurant-span{
+  color: #FFF;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height: 20px;
+}
+
+.iconRestaurant{
+  font-size: 25px;
+}
+.btn-delivery:hover{
+  background: #e3622b;
+  color: #FFF;
+  text-decoration: none;
+}

@@ -1,0 +1,12 @@
+.containerMain{
+  padding: 10vh 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #DADADA;
+}
+
+.containerMain div.containerCard{
+  margin: 5px 10px;
+}

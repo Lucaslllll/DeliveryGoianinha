@@ -3,6 +3,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 95vh;
   grid-template-areas: "wallpaper login";
+  overflow: hidden;
 }
 
 /*font da logo*/
@@ -23,6 +24,9 @@
   grid-area: login;
   align-self: center;
   height: 100%;
+} 
+
+.wallpaperLogin {
   background: url('../../assets/img/fundo_louco.png');
   background-size: 100vh 45vh;
   background-position: bottom;
@@ -32,7 +36,8 @@
   animation-duration: 1.5s;
   animation-direction: alternate;
   animation-iteration-count: 1;
-} 
+}
+
 @keyframes backMove{
     from{
       background-size: 100vh 0vh;

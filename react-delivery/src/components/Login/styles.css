@@ -33,10 +33,13 @@
     font-weight: bold;
     transition: 0.2s;
     margin: 3px 0px;
+    text-align: center;
 }
 
 .btn-login:hover {
     background: #e3612b;
+    color: #FFF;
+    text-decoration: none;
 }
 
 .noAccount{
