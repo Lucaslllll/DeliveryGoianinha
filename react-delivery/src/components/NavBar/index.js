@@ -23,6 +23,7 @@ export default class NavBar extends React.Component {
         this.toggle = this.toggle.bind(this);
         this.state = {
             isOpen: false,
+            isLogin: props.isLogin,
         };
 
     }
@@ -35,31 +36,35 @@ export default class NavBar extends React.Component {
     render() {
         return (
             <div>
-                <Navbar light expand="md" className="bg-menu" >
+                <Navbar light fixed="top" expand="md" className="bg-menu" >
                     <Container>
                         <NavbarBrand href="/" className="text-color logo">DeliveryApp</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto item" navbar>
+                                { this.state.isLogin 
+                                ?
+                                <UncontrolledDropdown nav inNavbar>
+                                    <DropdownToggle nav caret className="text-color">
+                                        Perfil
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                        <DropdownItem className="dropItem">
+                                            <div>Configurações</div>
+                                        </DropdownItem>
+                                        <DropdownItem divider />
+                                        <DropdownItem className="exit">
+                                            <div>Sair</div>
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                                :
                                 <NavItem>
                                     <NavLink href="#" className="text-color actived">
                                         Login
                                     </NavLink>
                                 </NavItem>
-                                {/*<UncontrolledDropdown nav inNavbar>*/}
-                                {/*    <DropdownToggle nav caret className="text-color">*/}
-                                {/*        Perfil*/}
-                                {/*    </DropdownToggle>*/}
-                                {/*    <DropdownMenu right>*/}
-                                {/*        <DropdownItem>*/}
-                                {/*            Configurações*/}
-                                {/*        </DropdownItem>*/}
-                                {/*        <DropdownItem divider />*/}
-                                {/*        <DropdownItem className="exit">*/}
-                                {/*            <div>Sair</div>*/}
-                                {/*        </DropdownItem>*/}
-                                {/*    </DropdownMenu>*/}
-                                {/*</UncontrolledDropdown>*/}
+                            }
                             </Nav>
                         </Collapse>
                     </Container>

@@ -6,9 +6,7 @@ import beforeLogin from '../../components/beforeLogin/';
 import Wallpaper from '../../components/Wallpaper';
 
 import { useTransition, animated } from 'react-spring';
-
-import {BrowserRouter, Route, Switch, __RouterContext } from "react-router-dom";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import {Route, Switch, __RouterContext } from "react-router-dom";
 
 import './styles.css';
 

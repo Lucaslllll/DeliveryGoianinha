@@ -1,9 +1,11 @@
 .containerLogin{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   grid-template-rows: 95vh;
   grid-template-areas: "wallpaper login";
   overflow: hidden;
+  height: 100%;
+  width: 100vw;
 }
 
 /*font da logo*/
@@ -21,7 +23,6 @@
 }
 
 .login {
-  grid-area: login;
   align-self: center;
   height: 100%;
 } 
@@ -36,6 +37,7 @@
   animation-duration: 1.5s;
   animation-direction: alternate;
   animation-iteration-count: 1;
+  grid-area: login;
 }
 
 @keyframes backMove{
@@ -52,7 +54,12 @@
     opacity: 0;
   }
 
-  .login{
-    grid-column: 1 / span 2;
+  .containerLogin{
+    grid-template-columns: 100%;
+    grid-template-areas: "login";
+  }
+
+  .wallpaperLogin{
+    background-repeat: repeat-x;
   }
 }

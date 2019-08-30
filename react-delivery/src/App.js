@@ -4,6 +4,8 @@ import NavBar from './components/NavBar';
 
 import Routes from './routes';
 
+import isAuthenticated from './auth';
+
 import './App.css';
 
 function App() {
@@ -11,7 +13,7 @@ function App() {
     <div className="body">
       <div className="container-app">
           <div className="menu">
-            <NavBar />
+            <NavBar isLogin={isAuthenticated()} />
           </div>
           <div>
             <Routes />
@@ -20,6 +22,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;

@@ -4,9 +4,18 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  background: #DADADA;
+  background:#F2F3F4;
 }
 
 .containerMain div.containerCard{
   margin: 5px 10px;
+  width: 340px;
+}
+
+.containerMain .spinner{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    padding: 10px 0 0 0;
 }

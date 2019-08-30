@@ -15,13 +15,15 @@
     text-align: center;
 }
 
-
+.dropItem > div{
+    text-align: center;
+}
 
 .exit {
-    background: #CB4335 !important;
+    background: #FFF !important;
 }
 .exit > div {
-    color: #FFFFFF;
+    color: #000;
     text-align: center;
 }
 
