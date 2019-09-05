@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import Conta, Restaurante, Pedido, Pedido_Restaurante, Comentario
+from .models import Usuario, Restaurante, Pedido, Pedido_Restaurante, Comentario
 
 
-class ContaSerializer(serializers.ModelSerializer):
+class UsuarioSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = Conta
-		fields = ['cpf', 'localizacao']
+		model = Usuario
+		fields = '__all__'
 
 class RestauranteSerializer(serializers.ModelSerializer):
 	class Meta:
