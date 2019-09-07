@@ -7,8 +7,8 @@ import { IoLogoFacebook, IoLogoInstagram } from "react-icons/io";
 const Footer = () => (
     <>
         <div className="containerFooter">
-            <span></span>
-            <span className="footer-text">TecHay 2019 - &copy; Copyright</span>
+
+            {/* <span className="footer-text">TecHay 2019 - &copy; Copyright</span> */}
             <div className="containerSocial">
                 <a href=""><IoLogoFacebook className="facebook" /></a>
                 <a href=""><IoLogoInstagram className="instagram" /></a>

@@ -2,6 +2,8 @@ import React from 'react';
 
 import './style.css';
 
+import { IoIosSearch } from 'react-icons/io';
+
 import {
     Container,
     Collapse,
@@ -33,10 +35,12 @@ export default class NavBar extends React.Component {
             isOpen: !this.state.isOpen
         });
     }
+
+
     render() {
         return (
             <div>
-                <Navbar light fixed="top" expand="md" className="bg-menu" >
+                <Navbar light expand="md" className="bg-menu" >
                     <Container>
                         <NavbarBrand href="/" className="text-color logo">DeliveryApp</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
