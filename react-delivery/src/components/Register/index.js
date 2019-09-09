@@ -2,43 +2,65 @@ import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import axios from 'axios';
+import api from "../../services/api";
 
 import './styles.css';
 
-const baseUrl = 'http://localhost:8000/usuario_lista';
-const initialState = {
-    user: { name: '', email: '' },
-    list: []
-}
 
 export default class Register extends Component{
-    state = { ...initialState };
-
-    clear(){
-        this.setState({ user: initialState.user })
-    }
-
-    save(){
-        const user = this.state.user;
-        const method = user.id ? 'put' : 'post';
-        const url = user.id ? `${baseUrl}/${user.id}` : baseUrl;
-        axios[method](url, user)
-            .then(resp => {
-                const list = this.getUpdateList(resp.data)
-            })
-    }
+    state = {
+        username: "",
+        email: "",
+        password: "",
+        error: ""
+      };
+    
+      handleSignUp = async e => {
+        e.preventDefault();
+        const { username, email, password } = this.state;
+        if (!username || !email || !password) {
+            this.setState({ error: "Preencha todos os dados para se cadastrar" });
+        } else {
+            try {
+            await api.post("/users", { username, email, password });
+            this.props.history.push("/");
+            } catch (err) {
+            console.log(err);
+            this.setState({ error: "Essa conta já existe!" });
+            }
+        }
+      };
 
     render(){
         return(
             <div className="containerForm">
-                <form className="form">
-                    <input placeholder="Nome" type="text" className="InputLogin" name="name" />
-                    <input placeholder="E-mail" type="text" className="InputLogin" name="name" />
-                    <input placeholder="Senha" type="text" className="InputLogin" name="name" />
-                    <input className="btn-login" type="submit" value="Registrar" />
-                    <Link className="noAccount" to="/Login">Tenho uma conta</Link>
-                </form>
+                    <form onSubmit={this.handleSignUp} className="form">
+                        {this.state.error && alert(this.state.error)}
+                        <input
+                            type="text"
+                            className="InputLogin"
+                            placeholder="Nome de usuário"
+                            onChange={e => this.setState({ username: e.target.value })}
+                        />
+                        <input
+                            type="email"
+                            placeholder="Endereço de e-mail"
+                            onChange={e => this.setState({ email: e.target.value })}
+                            className="InputLogin" 
+                        />
+                        <input
+                            className="InputLogin" 
+                            type="password"
+                            placeholder="Senha"
+                            onChange={e => this.setState({ password: e.target.value })}
+                        />
+                        <button 
+                            type="submit"
+                            className={`btn-login`}
+                            
+                        > Registrar </button>
+                        <Link className="noAccount" to="/Login">Tenho uma conta</Link>                
+                    </form>
             </div>
         );
     }
