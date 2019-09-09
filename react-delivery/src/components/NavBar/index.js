@@ -46,7 +46,7 @@ export default class NavBar extends React.Component {
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto item" navbar>
-                                { this.state.isLogin 
+                                { this.state.isLogin !== null
                                 ?
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret className="text-color">
