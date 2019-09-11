@@ -1,11 +1,18 @@
 from rest_framework import serializers
 from .models import Usuario, Restaurante, Pedido, Pedido_Restaurante, Comentario
+from django.contrib.auth.models import User
 
 
 class UsuarioSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Usuario
 		fields = '__all__'
+
+class UserSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = User
+		fields = ['username', 'first_name', 'last_name', 'email', 'password']
+
 
 class RestauranteSerializer(serializers.ModelSerializer):
 	class Meta:

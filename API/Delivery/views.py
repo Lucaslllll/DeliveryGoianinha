@@ -1,12 +1,14 @@
 from rest_framework import generics
 from .models import Usuario, Restaurante, Pedido, Pedido_Restaurante, Comentario
-from .serializers import UsuarioSerializer, RestauranteSerializer, PedidoSerializer, PedidoRestauranteSerializer, ComentarioSerializer
+from django.contrib.auth.models import User
+from .serializers import UsuarioSerializer, UserSerializer, RestauranteSerializer, PedidoSerializer, PedidoRestauranteSerializer, ComentarioSerializer
 
 # Create your views here.
 class UsuarioLista(generics.ListCreateAPIView):
-    queryset = Usuario.objects.all()
-    serializer_class = UsuarioSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 class UsuarioDetalhes(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Usuario.objects.all()
-    serializer_class = UsuarioSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
