@@ -3,7 +3,7 @@
     align-items: center;
     flex-direction: row;
     background: #e3672b;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0px 20px;
     height: 100%;
 }

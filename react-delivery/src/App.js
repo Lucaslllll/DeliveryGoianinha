@@ -4,7 +4,7 @@ import NavBar from './components/NavBar';
 
 import Routes from './routes';
 
-import isAuthenticated from './auth';
+import { isAuthenticated } from "./services/auth";
 
 import './App.css';
 
@@ -13,7 +13,7 @@ function App() {
     <div className="body">
       <div className="container-app">
           <div className="menu">
-            <NavBar isLogin={isAuthenticated()} />
+            <NavBar isLogin={isAuthenticated} />
           </div>
           <div>
             <Routes />
