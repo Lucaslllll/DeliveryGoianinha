@@ -3,15 +3,16 @@
 
 # Used Frameworks
 - Django
-- React Native
 
-# Used Library
-
+# Used Library in Django
 - pip install django-phonenumber-field
 - pip install phonenumbers
 - pip install djangorestframework
 - pip install Pillow
 
-# Install Dependencies
+# Used Library in JavaScript
+- React
+- React Native
 
+# Install Dependencies in React/React Native
 - yarn install
