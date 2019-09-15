@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Main from '../screen/main';
+import Home from '../screen/Home';
 import LoginScreen from '../screen/Login';
 
 import {Route, Switch, Redirect} from "react-router-dom";
@@ -26,7 +26,7 @@ const Routes = () => (
         <Route exact path="/" component={LoginScreen} />
         <Route exact path="/Login" component={LoginScreen} />
         <Route path="/Register" component={LoginScreen} />
-        <PrivateRoute path="/Home" component={Main} />
+        <Route path="/Home" component={Home} />
         <Route path="*" component={() => <h1 className="text-center">Page not found</h1>} />
       </Switch>
     </>

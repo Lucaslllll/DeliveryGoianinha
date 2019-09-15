@@ -1,19 +1,20 @@
 /*Editando o menu*/
 
 .bg-menu {
-    background: #e3672b;
-    /* background: #7D3C98; */
+    /* background: #e3672b; */
+    background: #FFF;
     text-transform: uppercase;
     font-weight: bold;
-    box-shadow: 0px 0px 10px #000;
+    border-bottom: 1px solid #DADADA;
+    box-shadow: 0px 0px 4px #DADADA;
 }
 
 .text-color {
-    color: #FFF !important;
+    color: #e3672b !important;
 }
 
 .logo{
-    color: #FFF !important;
+    color: #e3672b !important;
 }
 
 .item > li {

@@ -50,7 +50,7 @@ class Login extends Component {
                         className="InputLogin"
                         onChange={e => this.setState({ password: e.target.value })}
                     />
-                    <button className="btn-login" type="submit">Entrar</button>
+                    <Link className="btn-login" to="/Home">Entrar</Link>
                     <Link className="noAccount" to="/Register">Não tenho uma conta</Link>                    
                 </form>
             </div>

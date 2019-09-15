@@ -1,16 +1,17 @@
 import axios from "axios";
 import { getToken } from "./auth";
 
-const api = axios.create({
-  baseURL: "http://127.0.0.1:3001"
+const API = axios.create({
+  baseURL: "http://192.168.1.8:8000",
+  responseType: "json"
 });
 
-api.interceptors.request.use(async config => {
-  const token = getToken();
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
+// api.interceptors.request.use(async config => {
+//   const token = getToken();
+//   if (token) {
+//     config.headers.Authorization = `Bearer ${token}`;
+//   }
+//   return config;
+// });
 
-export default api;
+export default API;

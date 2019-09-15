@@ -38,6 +38,7 @@ function Main() {
           }
         </div> */}
       </div>
+
       {/* <Footer /> */}
     </div>
   )

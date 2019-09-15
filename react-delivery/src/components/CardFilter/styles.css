@@ -1,0 +1,22 @@
+.cardFilter{
+  width: 400px;
+  text-align: center;
+  border-radius: 8px;
+}
+.cardfilter__img--img{
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+}
+
+.cardFilter__text{
+  padding: 10px; 
+}
+
+.cardFilter__title--title{
+  font-size: 1.1em;
+}
+
+.cardFilter__subtitle--subtitle{
+  color: #B3B6B7;
+  font-size: 0.9em;
+}
