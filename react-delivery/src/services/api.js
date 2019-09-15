@@ -6,12 +6,12 @@ const API = axios.create({
   responseType: "json"
 });
 
-// api.interceptors.request.use(async config => {
-//   const token = getToken();
-//   if (token) {
-//     config.headers.Authorization = `Bearer ${token}`;
-//   }
-//   return config;
-// });
+API.interceptors.request.use(async config => {
+  const token = getToken();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
 
 export default API;

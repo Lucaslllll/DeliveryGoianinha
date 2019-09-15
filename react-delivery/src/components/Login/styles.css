@@ -33,6 +33,7 @@
     transition: 0.2s;
     margin: 3px 0px;
     text-align: center;
+    cursor: pointer;
 }
 
 .btn-login:hover {
