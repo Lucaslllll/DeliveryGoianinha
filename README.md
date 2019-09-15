@@ -9,6 +9,7 @@
 - pip install phonenumbers
 - pip install djangorestframework
 - pip install Pillow
+- pip install django-cors-headers
 
 # Used Library in JavaScript
 - React
