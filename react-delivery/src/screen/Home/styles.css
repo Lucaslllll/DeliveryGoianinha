@@ -1,0 +1,70 @@
+.containerCardFilter{
+  display: flex;
+  justify-content: center;
+  margin-top: 5vh;
+}
+.containerCardFilter > div {
+  margin: 0 8px 0 8px;
+}
+
+.cardHomeContainer{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 5vh;
+}
+
+.cardHomeContainer > div {
+  margin: 8px;
+}
+
+.containerHome__list-delivery--title {
+  color: #414143;
+  font-size: 1.125rem;
+  line-height: 1;
+  font-weight: bold;
+  padding: 40px 0 20px 20px;
+}
+
+.containerHome__list-delivery-container-filter{
+  display: flex;
+  justify-content: space-between;
+}
+
+.containerHome__filter{
+  display: flex;
+  justify-content: space-around;
+}
+
+@media only screen and (max-width: 1250px){
+  .containerCardFilter{
+    margin-top: 7vh;
+  }
+  .containerCardFilter > div {
+    width: 380px;
+  }
+}
+
+@media only screen and (max-width: 1150px){
+  .containerCardFilter{
+    margin-top: 8vh; 
+  }
+  .containerCardFilter > div {
+    width: 330px;
+  }
+}
+
+@media only screen and (max-width: 1020px){
+  .containerCardFilter{
+    margin-top: 9vh; 
+  }
+  .containerCardFilter > div {
+    width: 250px;
+  }
+}
+
+@media only screen and (max-width: 930px){
+  .containerCardFilter{
+    display: none; 
+  }
+}

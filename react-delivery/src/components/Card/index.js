@@ -1,6 +1,5 @@
 import React from 'react';
 
-import img from '../../assets/img/empresa.png';
 import { Link } from 'react-router-dom';
 
 import Rating from 'react-rating';
@@ -15,16 +14,29 @@ function Card(props) {
     <>
       <div className="containerCard">
         <div className="containerStatus">
-          <div className="status">Online</div>
+          { props.status
+            ?
+              <div className="status">Online</div>
+            :
+              <div className="status offline">Offline</div>
+          }
         </div>
         <div className="containerImg">
-          <img src={img} className="img-delivery" />
+          <img src={props.logotipoCard} alt="logotipo do delivery" className="img-delivery" />
+        </div>
+        <div className="title">
+          <h4 className="desc">{props.nameCard}</h4>
         </div>
         <div className="containerDesc">
-          <p className="desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+          <p className="desc">{props.descCard}</p>
         </div>
         <div className="containerRating">
           <Rating 
+            start={0}
+            stop={5}
+            step={1}
+            fractions={2}
+            initialRating={2}
             emptySymbol={<IoIosStarOutline className="iconRatingempty" />}
             fullSymbol={<IoIosStar className="iconRatingfull" />}
           />
