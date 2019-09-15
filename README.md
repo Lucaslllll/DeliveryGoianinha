@@ -1,4 +1,4 @@
-# DeliveryGoianinha
+# DeviGO
   An app designed to solve some delivery problems in the community or city of Goianinha.
 
 # Used Frameworks
