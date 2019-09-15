@@ -1,4 +1,4 @@
-# DeliveryGoianinha
+# DeviGO - Delivery de Goianinha
   An app designed to solve some delivery problems in the community or city of Goianinha.
 
 # Used Frameworks
@@ -9,6 +9,7 @@
 - pip install phonenumbers
 - pip install djangorestframework
 - pip install Pillow
+- pip install django-cors-headers
 
 # Used Library in JavaScript
 - React
