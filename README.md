@@ -11,6 +11,7 @@
 - pip install Pillow
 - pip install django-cors-headers
 - pip install django-rest-knox
+- pip install cloudinary
 
 # Used Library in JavaScript
 - React
