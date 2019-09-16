@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import API from "../../services/api";
+import { login } from '../../services/auth';
 
 import './styles.css';
 
@@ -11,25 +12,29 @@ export default function Register(){
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');    
     const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [error, setError] = useState(false);
     const [redirect, setRedirect] = useState(false);
 
     async function handleSignUp(){
         if(!userName || !email || !password){
-            alert('Preencha todos os dados para se cadastrar')
+            setMessage('Preencha todos os dados para realizar o cadastro!');
+            setError(true);
         }
         else{
             try{
                 try{
-                    await API.post('/api/auth/registrar', {
+                    const response = await API.post('/api/auth/registrar', {
                         username: userName, 
                         password: password, 
                         email: email
                     });
-                    alert('Pronto, realize login para continuar!');
+                    login(response.data.token);
                     setRedirect(true);
                 }
                 catch(err){
-                    alert('Essa conta já foi cadastrada!')
+                    setError(true);
+                    setMessage('Essa conta já foi cadastrada!')
                 }
             }
             catch(err){
@@ -41,15 +46,32 @@ export default function Register(){
 
     function renderRedirect() {
         if (redirect){
-            return <Redirect to="/Login" />
+            document.location.reload();
         }
+    }
+
+    function handleMessage(){
+        if(error){
+            return(
+                <div className={`animated shake containerForm_error--message`} >
+                    {message}
+                </div>
+            )
+        }
+        return(
+            <></>
+        )
     }
 
     return(
         <div className="containerForm">
             {renderRedirect()}
                 <form className="form">
+                    <div className="containerForm__error">
+                        {handleMessage()}
+                    </div>
                     <input
+                        onClick={() => handleMessage()}
                         type="text"
                         className="InputLogin"
                         placeholder="Nome de usuário"

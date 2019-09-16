@@ -3,23 +3,9 @@ import React from 'react';
 import Home from '../screen/Home';
 import LoginScreen from '../screen/Login';
 
-import {Route, Switch, Redirect} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import LoginRoute from './LoginRoute';
-import { isAuthenticated } from "../services/auth";
-
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      isAuthenticated() ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-      )
-    }
-  />
-);
-
+import PrivateRoute from './PrivateRoute';
 
 const Routes = () => (
     <>

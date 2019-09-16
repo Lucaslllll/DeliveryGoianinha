@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import API from "../../services/api";
 import { login } from "../../services/auth";
@@ -12,6 +12,8 @@ function Login(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
+    const [message, setMessage] = useState('');
+    const [error, setError] = useState(false);
     
     async function handleSingIn(){
         try{
@@ -24,19 +26,36 @@ function Login(){
 
         }
         catch(err){
-            alert('Dados incorretos!');
+            setMessage('Dados incorretos!');
+            setError(true);
         }
     }
     function renderRedirect() {
         if (redirect){
-            return <Redirect to="/Home" />
+            document.location.reload();
         }
+    }
+
+    function handleMessage(){
+        if(error){
+            return(
+                <div className={`animated shake containerForm_error--message`} >
+                    {message}
+                </div>
+            )
+        }
+        return(
+            <></>
+        )
     }
 
     return(
         <div className="containerForm">
             {renderRedirect()}
             <form className="form" >
+                <div className="containerForm__error">
+                    {handleMessage()}
+                </div>
                 <input
                     type="text"
                     placeholder="Endereço de e-mail"

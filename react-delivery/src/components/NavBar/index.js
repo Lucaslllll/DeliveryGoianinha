@@ -1,9 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import './style.css';
-
-import { Redirect } from 'react-router-dom';
-
+import { isAuthenticated } from "../../services/auth";
 import { logout } from '../../services/auth';
 
 import {
@@ -20,30 +18,20 @@ import {
     DropdownMenu,
     DropdownItem } from 'reactstrap';
 
-export default class NavBar extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-            isOpen: false,
-            isLogin: props.isLogin,
-            redirect: false,
-        };
-
+function NavBar(){
+    const [isOpen, setIsOpen] = useState(false);
+    const [isLogin] = useState(isAuthenticated());
+    
+    function toggle() {
+        setIsOpen(!isOpen);
     }
 
-    toggle() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
+    function handleLogout(){
+        logout();
+        document.location.reload();
     }
 
-    handleLogout(){
-        this.state.redirect = true
-    }
-
-    handleProfileStatus(e){
+    function handleProfileStatus(e){
         if(e){
             return(
                 <UncontrolledDropdown nav inNavbar>
@@ -56,7 +44,7 @@ export default class NavBar extends React.Component {
                         </DropdownItem>
                         <DropdownItem divider />
                         <DropdownItem className="exit">
-                            <div onClick={() => logout()}>
+                            <div onClick={() => handleLogout()}>
                                     Sair
                             </div>
                         </DropdownItem>
@@ -75,28 +63,22 @@ export default class NavBar extends React.Component {
         }
     }
 
-    renderRedirect(){
-        if (this.state.redirect){
-            return <Redirect to="/Home" />
-        }
-    }
-
-    render() {
-        return (
-            <div>
-                {this.renderRedirect()}
-                <Navbar light fixed="top" expand="md" className="bg-menu" >
-                    <Container>
-                        <NavbarBrand href="/" className="text-color logo">DeliveryApp</NavbarBrand>
-                        <NavbarToggler onClick={this.toggle} />
-                        <Collapse isOpen={this.state.isOpen} navbar>
-                            <Nav className="ml-auto item" navbar>
-                                {this.handleProfileStatus(this.state.isLogin)}
-                            </Nav>
-                        </Collapse>
-                    </Container>
-                </Navbar>
-            </div>
-        );
-    }
+    return (
+        <div>
+            <Navbar light fixed="top" expand="md" className="bg-menu" >
+                <Container>
+                    <NavbarBrand href="/" className="text-color logo">DeliveryApp</NavbarBrand>
+                    <NavbarToggler onClick={() => toggle()} />
+                    <Collapse isOpen={isOpen} navbar>
+                        <Nav className="ml-auto item" navbar>
+                            {handleProfileStatus(isLogin)}
+                        </Nav>
+                    </Collapse>
+                </Container>
+            </Navbar>
+        </div>
+    );
 }
+
+
+export default NavBar;

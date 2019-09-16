@@ -6,6 +6,20 @@
     
 }
 
+.containerForm__error{
+    height: 35px;
+    width: 100%;
+}
+
+.containerForm_error--message{
+    border-radius: 3px;
+    border: 1px solid #E74C3C;
+    color: #E74C3C;
+    padding: 0 20px 0 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1em;
+}
 
 .form{
     display: flex;

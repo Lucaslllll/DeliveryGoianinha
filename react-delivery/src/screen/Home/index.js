@@ -9,30 +9,32 @@ import './styles.css';
 
 export default function Home() {
   const [cards, setCards] = useState([]);
+  // const [cardFilters, setCardsFilters] = useState([]);
+
   useEffect(() => {
-    API.get('/usuario_lista/')
+    handleCard();
+  }, []);
+
+  async function handleCard(){
+    await API.get('/api/User')
     .then((data) => {
       setCards(data.data.results)
     })
     .catch(console.log)
-  }, []);
+  }
 
   return (
     <div className="containerHome">
       <div className="containerCardFilter">
-        <CardFilter />
-        <CardFilter />
         <CardFilter />
       </div>
       <div className="containerHome__list-delivery">
         <h3 className="containerHome__list-delivery--title">Deliverys</h3>
         <div className="containerHome__list-delivery-container-filter">
             <div className="containerHome__filter">
-              <p>Filtre por</p>
-              <button className="btn btn-outline-dark">AAA</button>
-              <button className="btn btn-outline-dark">AAA</button>
-              <button className="btn btn-outline-dark">AAA</button>
-
+              <p className="containerHome__filter--title">Filtre por</p>
+              <button className="btn-filter">Entrega</button>
+              <button className="btn-filter">Preço</button>
             </div>
             <div className="containerHom__rel">
               <p>Ordenar por</p>

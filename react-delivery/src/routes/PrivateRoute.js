@@ -3,18 +3,17 @@ import React from 'react';
 import {Route, Redirect} from "react-router-dom";
 import { isAuthenticated } from "../services/auth";
 
-
-export const LoginRoute = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
       isAuthenticated() ? (
-        <Redirect to={{ pathname: "/Home", state: { from: props.location } }} />
+        <Component {...props} />
       ) : (
-          <Component {...props} />  
+        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
       )
     }
   />
 );
 
-export default LoginRoute;
+export default PrivateRoute;
