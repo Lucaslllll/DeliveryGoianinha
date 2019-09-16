@@ -2,6 +2,10 @@ import React from 'react';
 
 import './style.css';
 
+import { Redirect } from 'react-router-dom';
+
+import { logout } from '../../services/auth';
+
 import {
     Container,
     Collapse,
@@ -24,6 +28,7 @@ export default class NavBar extends React.Component {
         this.state = {
             isOpen: false,
             isLogin: props.isLogin,
+            redirect: false,
         };
 
     }
@@ -34,39 +39,59 @@ export default class NavBar extends React.Component {
         });
     }
 
+    handleLogout(){
+        this.state.redirect = true
+    }
+
+    handleProfileStatus(e){
+        if(e){
+            return(
+                <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle nav caret className="text-color">
+                        Perfil
+                    </DropdownToggle>
+                    <DropdownMenu right>
+                        <DropdownItem className="dropItem">
+                            <div>Configurações</div>
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem className="exit">
+                            <div onClick={() => logout()}>
+                                    Sair
+                            </div>
+                        </DropdownItem>
+                    </DropdownMenu>
+                </UncontrolledDropdown>                   
+            )
+        }
+        else{
+            return(
+                <NavItem>
+                    <NavLink href="#" className="text-color actived">
+                        Login
+                    </NavLink>
+                </NavItem>
+            )
+        }
+    }
+
+    renderRedirect(){
+        if (this.state.redirect){
+            return <Redirect to="/Home" />
+        }
+    }
 
     render() {
         return (
             <div>
+                {this.renderRedirect()}
                 <Navbar light fixed="top" expand="md" className="bg-menu" >
                     <Container>
                         <NavbarBrand href="/" className="text-color logo">DeliveryApp</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto item" navbar>
-                                { this.state.isLogin !== null
-                                ?
-                                <UncontrolledDropdown nav inNavbar>
-                                    <DropdownToggle nav caret className="text-color">
-                                        Perfil
-                                    </DropdownToggle>
-                                    <DropdownMenu right>
-                                        <DropdownItem className="dropItem">
-                                            <div>Configurações</div>
-                                        </DropdownItem>
-                                        <DropdownItem divider />
-                                        <DropdownItem className="exit">
-                                            <div>Sair</div>
-                                        </DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
-                                :
-                                <NavItem>
-                                    <NavLink href="#" className="text-color actived">
-                                        Login
-                                    </NavLink>
-                                </NavItem>
-                            }
+                                {this.handleProfileStatus(this.state.isLogin)}
                             </Nav>
                         </Collapse>
                     </Container>

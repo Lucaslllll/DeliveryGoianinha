@@ -4,7 +4,7 @@ import Home from '../screen/Home';
 import LoginScreen from '../screen/Login';
 
 import {Route, Switch, Redirect} from "react-router-dom";
-
+import LoginRoute from './LoginRoute';
 import { isAuthenticated } from "../services/auth";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -20,13 +20,14 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 );
 
+
 const Routes = () => (
     <>
       <Switch>
-        <Route exact path="/" component={LoginScreen} />
-        <Route exact path="/Login" component={LoginScreen} />
-        <Route path="/Register" component={LoginScreen} />
-        <Route path="/Home" component={Home} />
+        <LoginRoute exact path="/" component={LoginScreen} />
+        <LoginRoute exact path="/Login" component={LoginScreen} />
+        <LoginRoute path="/Register" component={LoginScreen} />
+        <PrivateRoute path="/Home" component={Home} />
         <Route path="*" component={() => <h1 className="text-center">Page not found</h1>} />
       </Switch>
     </>

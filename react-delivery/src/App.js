@@ -13,7 +13,7 @@ function App() {
     <div className="body">
       <div className="container-app">
           <div className="menu">
-            <NavBar isLogin={isAuthenticated} />
+            <NavBar isLogin={isAuthenticated()} />
           </div>
           <div>
             <Routes />

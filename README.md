@@ -10,6 +10,7 @@
 - pip install djangorestframework
 - pip install Pillow
 - pip install django-cors-headers
+- pip install django-rest-knox
 
 # Used Library in JavaScript
 - React
