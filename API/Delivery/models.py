@@ -58,7 +58,10 @@ class Restaurante(models.Model):
     descricao_longa = models.CharField(max_length=500, null=True);
     status = models.BooleanField(default=True, null=True);
     telefone = PhoneNumberField(region='BR')
+    fotos = models.ForeignKey(Fotos_Restaurante, on_delete=models.CASCADE, blank=True, null=True)
     cardapio = models.OneToOneField(Cardapio, on_delete=models.CASCADE, blank=True, null=True)
+    
+
 
 class Pedido(models.Model):
     nome = models.CharField(max_length=500)
