@@ -3,9 +3,7 @@ from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 import os
 
-from pygments.lexers import get_lexer_by_name
-from pygments.formatters.html import HtmlFormatter
-from pygments import highlight
+
 
 
 def get_path_restaurante(self, instance, filename):
@@ -22,9 +20,9 @@ class Classificacao_Restaurante(models.Model):
 
 
 class Fotos_Restaurante(models.Model):
-    foto = models.ImageField(upload_to=get_path_restaurante);
+    foto = models.ImageField(upload_to=get_path_restaurante, null=True);
 class Fotos_Comida(models.Model):
-    foto = models.ImageField(upload_to=get_path_comida);
+    foto = models.ImageField(upload_to=get_path_comida, null=True);
 
 
 
@@ -61,7 +59,6 @@ class Restaurante(models.Model):
     fotos = models.ForeignKey(Fotos_Restaurante, on_delete=models.CASCADE, blank=True, null=True)
     cardapio = models.OneToOneField(Cardapio, on_delete=models.CASCADE, blank=True, null=True)
     
-
 
 class Pedido(models.Model):
     nome = models.CharField(max_length=500)
