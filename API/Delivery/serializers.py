@@ -1,37 +1,70 @@
 from rest_framework import serializers
-from .models import Usuario, Restaurante, Pedido, Pedido_Restaurante, Comentario
+from . import models
 from django.contrib.auth.models import User
 
 
 class UsuarioSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = Usuario
+		model = models.Usuario
 		fields = '__all__'
-
-
 
 class UserSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = User
+		model = models.User
 		fields = ['id', 'username', 'first_name', 'last_name', 'email', 'password']
-
 
 class RestauranteSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = Restaurante
+		model = models.Restaurante
 		fields = '__all__'
 
 class PedidoSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = Pedido
+		model = models.Pedido
 		fields = '__all__'
 
 class PedidoRestauranteSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = Pedido_Restaurante
+		model = models.Pedido_Restaurante
 		fields = '__all__'
 
 class ComentarioSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = Comentario
+		model = models.Comentario
+		fields = '__all__'
+
+
+class ClassificacaoUsuarioSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = models.Classificacao_Usuario
+		fields = '__all__'
+
+class ClassificacaoRestauranteSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = models.Classificacao_Restaurante
+		fields = '__all__'
+
+class FotosRestauranteSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = models.Fotos_Restaurante
+		fields = '__all__'
+
+class FotosComidaSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = models.Fotos_Comida
+		fields = '__all__'
+
+class IngredientesSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = models.Ingredientes
+		fields = '__all__'
+
+class ComidaSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = models.Comida
+		fields = '__all__'
+
+class CardapioSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = models.Cardapio
 		fields = '__all__'
