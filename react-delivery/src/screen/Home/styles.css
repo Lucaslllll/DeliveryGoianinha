@@ -1,10 +1,12 @@
 .containerCardFilter{
   display: flex;
   justify-content: center;
-  margin-top: 5vh;
+  background: #FFF;
+  padding: 6vh 10px 40px 10px;
 }
+
 .containerCardFilter > div {
-  margin: 0 8px 0 8px;
+  padding: 0 10px 0 10px;
 }
 
 .cardHomeContainer{
@@ -19,7 +21,7 @@
 }
 
 .containerHome__list-delivery{
-  padding: 40px 40px 20px 20px;
+  padding: 40px 50px 20px 50px;
 }
 
 .containerHome__list-delivery--title {
@@ -60,19 +62,61 @@
   text-transform: capitalize;
   padding: 0 15px;
   transition: 0.2s;
-  height: 70%;
+  height: 38px;
 }
 
 .containerHome__filter .btn-filter:hover{
-  color: #000;
+  box-shadow: 0 0 1px black;
 }
+
+.containerHome__rel{
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  
+}
+
+.containerHome__rel--options{
+  width: 200px;
+}
+
+.containerHome__btn-more{
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 50px;
+  padding: 0 30px 40px 30px;
+}
+
+.btn-more{
+  border: 1px solid #e3672b;
+  width: 100%;
+  border-radius: 4px;
+  padding: 10px 0 10px 0;
+  text-align: center;
+  transition: 0.2s;
+  text-transform: uppercase;
+  color: #e3672b;
+  font-weight: bold;
+}
+
+.btn-more:hover{
+  background: #e3672b;
+  color: #FFF;
+}
+
+.btn-more:active{
+  background: #e3693b;
+}
+
 
 @media only screen and (max-width: 1250px){
   .containerCardFilter{
     margin-top: 7vh;
   }
-  .containerCardFilter > div {
-    width: 380px;
+  .containerCardFilter > div > div {
+      width: 360px;
   }
 }
 
@@ -80,8 +124,8 @@
   .containerCardFilter{
     margin-top: 8vh; 
   }
-  .containerCardFilter > div {
-    width: 330px;
+  .containerCardFilter > div  > div{
+    width: 320px;
   }
 }
 

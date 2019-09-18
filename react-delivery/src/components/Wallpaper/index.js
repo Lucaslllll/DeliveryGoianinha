@@ -10,7 +10,7 @@ export const Wallpaper = () => (
         <div className="gridBattle">
             <div className="infoCellContainer">
                 <div className="infoCell animated flipInX slower">
-                   <h3>DeliveryApp</h3>
+                   <h3>DeviGO</h3>
                     <p><span className="aspas">"</span>DeliveryApp! O delivery de Goianinha no seu celular!<span className="aspas">"</span></p>
                     <a href="https://www.google.com/"><img className="linkAndroid" alt="baixar o aplicativo android" src={linkAndroid} /></a>
                 </div>

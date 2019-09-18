@@ -3,7 +3,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: 5vh 95vh;
   grid-template-areas: "menu"
-                  "content";
+                  "conten";
 }
 
 .menu{
@@ -11,5 +11,5 @@
 }
 
 .content{
-  grid-area: content; 
+  grid-area: conten; 
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import './style.css';
 import { isAuthenticated } from "../../services/auth";
@@ -20,17 +20,29 @@ import {
 
 function NavBar(){
     const [isOpen, setIsOpen] = useState(false);
-    const [isLogin] = useState(isAuthenticated());
+    const [isLogin] = useState(isAuthenticated()); 
+    const [bgNavBar, setBgNavBar] = useState('bgOrange');
     
+    useEffect(() => handleBgMenu(isLogin), [isLogin])
+
     function toggle() {
         setIsOpen(!isOpen);
     }
-
+    
     function handleLogout(){
         logout();
         document.location.reload();
     }
-
+    
+    function handleBgMenu(isLogin){
+        if(isLogin){
+            setBgNavBar('bgWhite')
+        }
+        else{
+            setBgNavBar('bgOrange')
+        }
+    }
+    
     function handleProfileStatus(e){
         if(e){
             return(
@@ -64,19 +76,18 @@ function NavBar(){
     }
 
     return (
-        <div>
-            <Navbar light fixed="top" expand="md" className="bg-menu" >
-                <Container>
-                    <NavbarBrand href="/" className="text-color logo">DeliveryApp</NavbarBrand>
-                    <NavbarToggler onClick={() => toggle()} />
-                    <Collapse isOpen={isOpen} navbar>
-                        <Nav className="ml-auto item" navbar>
-                            {handleProfileStatus(isLogin)}
-                        </Nav>
-                    </Collapse>
-                </Container>
-            </Navbar>
-        </div>
+        <Navbar light fixed="top" expand="md" className={`bg-menu ${bgNavBar}`}>
+            <Container>
+                <NavbarBrand href="/" className="text-color logo">DeviGO</NavbarBrand>
+                <NavbarToggler onClick={() => toggle()} />
+                <Collapse isOpen={isOpen} navbar>
+                    <Nav className="ml-auto item" navbar>
+                        {handleProfileStatus(isLogin)}
+                    </Nav>
+                </Collapse>
+            </Container>
+        </Navbar>
+
     );
 }
 

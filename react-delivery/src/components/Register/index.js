@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
+
+import { Spinner } from 'reactstrap';
+
 import API from "../../services/api";
 import { login } from '../../services/auth';
 
@@ -15,11 +18,14 @@ export default function Register(){
     const [message, setMessage] = useState('');
     const [error, setError] = useState(false);
     const [redirect, setRedirect] = useState(false);
+    const [spinner, setSpinner] = useState(false); 
 
     async function handleSignUp(){
+        setSpinner(true);
         if(!userName || !email || !password){
             setMessage('Preencha todos os dados para realizar o cadastro!');
             setError(true);
+            setSpinner(false);
         }
         else{
             try{
@@ -33,12 +39,14 @@ export default function Register(){
                     setRedirect(true);
                 }
                 catch(err){
+                    setSpinner(false);
                     setError(true);
                     setMessage('Essa conta já foi cadastrada!')
                 }
             }
             catch(err){
                 console.log(err);
+                setSpinner(false)
             }
         }
 
@@ -93,7 +101,12 @@ export default function Register(){
                     <div
                         className={`btn-login`}
                         onClick={() => handleSignUp()}
-                    >Registrar</div>
+                    >{   spinner
+                            ?
+                                <Spinner size="sm" className="btn-login-spinner" />
+                            :
+                                <>Registrar</>
+                        }</div>
                     <Link className="noAccount" to="/Login">Tenho uma conta</Link>                
                 </form>
         </div>

@@ -16,13 +16,13 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row-reverse;
-  padding: 5px 5px 0 0;
+  padding: 0;
 }
 
 .containerCard .status{
   background: #2ECC71;
-  border-radius: 3px;
-  padding: 5px;
+  border-radius: 0px 3px 0 3px;
+  padding: 5px; 
   color: #FFF;
   text-transform: uppercase;
   font-weight: bold;

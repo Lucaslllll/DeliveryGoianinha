@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import API from "../../services/api";
 import { login } from "../../services/auth";
+import { Spinner } from 'reactstrap';
 
 
 import './styles.css';
@@ -14,20 +15,22 @@ function Login(){
     const [redirect, setRedirect] = useState(false);
     const [message, setMessage] = useState('');
     const [error, setError] = useState(false);
-    
+    const [spinner, setSpinner] = useState(false); 
+
     async function handleSingIn(){
+        setSpinner(true);
         try{
-            const reponse = await API.post('/api/auth/login', {
+            const response = await API.post('/api/auth/login', {
                 username: email, 
                 password: password
             });
-            login(reponse.data.token);
+            login(response.data.token);
             setRedirect(true);
-
         }
         catch(err){
             setMessage('Dados incorretos!');
             setError(true);
+            setSpinner(false);
         }
     }
     function renderRedirect() {
@@ -72,7 +75,14 @@ function Login(){
                 <div 
                     className="btn-login" 
                     onClick={() => handleSingIn()}
-                    >Entrar</div>
+                    >
+                        {   spinner
+                            ?
+                                <Spinner size="sm" className="btn-login-spinner" />
+                            :
+                                <>Entrar</>
+                        }
+                    </div>
                 <Link className="noAccount" to="/Register">Não tenho uma conta</Link>                    
             </form>
         </div>

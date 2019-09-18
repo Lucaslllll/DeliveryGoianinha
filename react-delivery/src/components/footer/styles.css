@@ -1,11 +1,12 @@
 .containerFooter{
     display: flex;
     align-items: center;
-    flex-direction: row;
-    background: #e3672b;
+    flex-direction: column;
+    background: #FFF;
     justify-content: center;
-    padding: 0px 20px;
+    margin-top: 30px;
     height: 100%;
+    padding: 0 20px;
 }
 
 .containerSocial{
@@ -13,21 +14,80 @@
 }
 
 
+
+
+
+/*Organizando as rows e cols footer inicial*/
+
+.containerFooter__row{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 40px 0;
+    border-top: 1px solid #DADADA;
+}
+
+
+.containerFooter__row--2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    border-top: 1px solid #DADADA;
+    padding: 30px 70px;
+}
+
+.containerFooter__col{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.containerFooter__col--title{
+    text-align: left;
+    color: #839192;
+
+}
+
+.containerFooter__row--2 .containerFooter__col--link{
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #A6ACAF;
+}
+
+.containerFooter__row--2 .containerFooter__col--link:hover{
+    color: #717D7E;
+}
+
+.containerFooter__col--link{
+    color: #A6ACAF;
+    font-size: 18px;
+    text-align: left;
+    transition: 0.2s;
+    margin: 20px 0 20px 0px;
+}
+
+.containerFooter__col--copy{
+    width: 300px;
+    color: #A6ACAF;
+}
+
+.containerFooter__col--link:hover{
+    color: #717D7E;
+    text-decoration: none;
+}
+
 .containerSocial > a {
     margin: 0px 5px;
 }
 
-.footer-text{
-    font-style: italic;
-    padding: 5px 0;
-    color: #FFF;
-    font-weight: bold;
-}
-
+/*Editando as redes sociais*/
 
 .facebook{
     transition: 0.3s;
-    color: #FFF;
+    color: #A6ACAF;
     font-size: 33px;
     border-radius: 5px;
 }
@@ -35,19 +95,18 @@
 
 .facebook:hover{
     text-decoration: none;
-    color: #2471A3;
+    color: #717D7E;
     background: #FFF;
 }
 
 .instagram{
-    color: #E1306C;
+    color: #A6ACAF;
     transition: 0.3s;
     font-size: 33px;
     border-radius: 5px;
 }
 
 .instagram:hover{
-    color: #FFF;
+    color: #717D7E;
     text-decoration: none;
-    background: #E1306C;
 }
