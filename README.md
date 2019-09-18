@@ -27,7 +27,7 @@
   - Prop-types
   - React
   - React-DOM
-  - React-icons
+  - React-Icons
   - React-Rating
   - React-Router-DOM
   - React-Scripts
