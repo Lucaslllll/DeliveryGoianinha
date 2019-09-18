@@ -3,6 +3,7 @@
 
 # Used Frameworks
 - Django
+- Bootstrap/ReactStrap
 
 # Used Library in JavaScript
 - React
