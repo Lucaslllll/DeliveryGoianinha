@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
+import cloudinary 
+import cloudinary.uploader
+import cloudinary.api
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -42,8 +47,17 @@ INSTALLED_APPS = [
     'Delivery',
     'accounts',
     'knox',
+    'cloudinary',
+
 
 ]
+
+cloudinary.config(
+    cloud_name="thallisonapi",
+    api_key="63129355297",
+    api_secret="j0vdJBuNqQaCk7UZ"
+)
+
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',

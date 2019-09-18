@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 import os
-
+from cloudinary.models import CloudinaryField
 
 
 
@@ -20,7 +20,7 @@ class Classificacao_Restaurante(models.Model):
 
 
 class Fotos_Restaurante(models.Model):
-    foto = models.ImageField(upload_to=get_path_restaurante, null=True);
+    foto = CloudinaryField('imagem', null=True)
 class Fotos_Comida(models.Model):
     foto = models.ImageField(upload_to=get_path_comida, null=True);
 
