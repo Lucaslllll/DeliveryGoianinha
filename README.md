@@ -3,18 +3,54 @@
 
 # Used Frameworks
 - Django
+- Bootstrap/ReactStrap
 
-# Used Library in Django
+# Used Library in JavaScript
+- React
+- React Native
+
+# Dependencies
+
+  # Django
+  - Django-Phonenumber-field
+  - Phonenumbers
+  - Djangorestframework
+  - Pillow
+  - Django-Cors-Headers
+  - Django-Rest-Knox
+  - Cloudinary
+
+  # ReactJS
+  - Axios
+  - Bootstrap
+  - Reactstrap
+  - Prop-types
+  - React
+  - React-DOM
+  - React-icons
+  - React-Rating
+  - React-Router-DOM
+  - React-Scripts
+  - React-Select
+  - React-Spring
+  - Styled-Components
+  - @material-ui/core
+  - @material-ui/icons
+  - React-Addons-CSS-Transition-Group
+
+
+# How To Install All Dependencies
+ - It is necessary to install all dependencies for the project to run successfully and without any errors.
+
+# Django
 - pip install django-phonenumber-field
 - pip install phonenumbers
 - pip install djangorestframework
 - pip install Pillow
 - pip install django-cors-headers
 - pip install django-rest-knox
+- pip install cloudinary
 
-# Used Library in JavaScript
-- React
-- React Native
-
-# Install Dependencies in React/React Native
-- yarn install
+# React/React-Native
+- yarn install or npm install
+ 
