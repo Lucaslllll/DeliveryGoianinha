@@ -12,7 +12,7 @@
 # Dependencies
 
   # Django
-  - Django-Phonenumber-field
+  - Django-Phonenumber-Field
   - Phonenumbers
   - Djangorestframework
   - Pillow
