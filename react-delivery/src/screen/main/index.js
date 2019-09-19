@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 
 import './styles.css';
 
-import BeforeMain from '../beforeMain';
+import Home from '../Home';
+
 import CardPizza from '../CardPizza';
 import CardAcai from '../CardAcai';
 import Request from '../Request';
-import Footer from '../../components/footer';
+import DeviPage from '../DeviPage';
 import { Switch, Route } from 'react-router-dom';
 
 
@@ -15,10 +16,11 @@ function Main() {
     <div className="container__main">
       <div className="containerMain">
         <Switch>
-          <Route path="/Home" exact component={BeforeMain} />
-          <Route path="/Home/Pizza" component={CardPizza} />
-          <Route path="/Home/Acai" component={CardAcai} />
-          <Route path="/Home/Request" component={Request} />
+          <Route path="/Home" exact component={Home} />
+          <Route path="/d/acaidelivery" exact component={DeviPage} />
+          <Route path="/Home/Pizza" exact component={CardPizza} />
+          <Route path="/Home/Acai" exact component={CardAcai} />
+          <Route path="/Home/Request" exact component={Request} />
         </Switch>
       </div>
     </div>

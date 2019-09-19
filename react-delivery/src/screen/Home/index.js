@@ -28,7 +28,7 @@ export default function Home() {
   }, [pagination]);
 
   async function handleCard(){
-    await API.get(`/api/User/?page=${pagination}`)
+    await API.get(`/api/api/restaurante/?page=${pagination}`)
     .then((data) => {  
       setCards(data.data.results);
     })
