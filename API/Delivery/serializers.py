@@ -18,7 +18,7 @@ class RestauranteSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Restaurante
         fields = ['id', 'nome', 'cnpj', 'classificacao', 'localizacao', 'descricao_breve', 'descricao_longa', 'status',
-                  'telefone', 'fotos', 'cardapio' ]
+                  'telefone', 'cardapio' ]
 
         
 
@@ -62,6 +62,11 @@ class FotosComidaSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Fotos_Comida
         fields = '__all__'
+
+    def to_representation(self, instance):
+        representation = super(FotosComidaSerializer, self).to_representation(instance)
+        representation['foto'] = instance.foto.url
+        return representation
 
 class IngredientesSerializer(serializers.ModelSerializer):
     class Meta:

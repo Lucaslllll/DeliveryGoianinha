@@ -12,68 +12,85 @@ def get_path_comida(self, instance, filename):
     return os.path.join('Fotos/Comida', str(instance.id), filename)
 
 
+class Ingredientes(models.Model):
+    nome = models.CharField(max_length=120)
 
-class Classificacao_Usuario(models.Model):
-    nota = models.IntegerField();
-class Classificacao_Restaurante(models.Model):
-    nota = models.IntegerField();
+class Comida(models.Model):
+    nome = models.CharField(max_length=120)
+    ingredientes = models.ManyToManyField(Ingredientes)
+    preço = models.DecimalField(max_digits=6, decimal_places=2)
+    
+    def __str__(self):
+        return self.nome
 
-
-class Fotos_Restaurante(models.Model):
-    foto = CloudinaryField('imagem', null=True)
-class Fotos_Comida(models.Model):
-    foto = models.ImageField(upload_to=get_path_comida, null=True);
-
+class Cardapio(models.Model):
+    comidas = models.ManyToManyField(Comida);
+   
 
 
 class Usuario(models.Model):    
-    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True);
-    localizacao = models.CharField(max_length=500);
-    classificacao = models.ForeignKey(Classificacao_Usuario, on_delete=models.CASCADE, blank=True, null=True);
-
-
-class Ingredientes(models.Model):
-    nome = models.CharField(max_length=120);
-
-class Comida(models.Model):
-    nome = models.CharField(max_length=120);
-    ingredientes = models.ForeignKey(Ingredientes, on_delete=models.CASCADE, blank=True, null=True);
-    preço = models.DecimalField(max_digits=6, decimal_places=2);
-    imagem = models.ForeignKey(Fotos_Comida, on_delete=models.CASCADE, blank=True, null=True);
-
-class Cardapio(models.Model):
-    comidas = models.ForeignKey(Comida, on_delete=models.CASCADE, blank=True, null=True);
-
-
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+    localizacao = models.CharField(max_length=500)
+    
 
 class Restaurante(models.Model):
     nome = models.CharField(max_length=500)
-    cnpj = models.IntegerField(null=True);
-    email = models.EmailField(null=True);
-    classificacao = models.ForeignKey(Classificacao_Restaurante, on_delete=models.CASCADE, blank=True, null=True);
+    cnpj = models.IntegerField(null=True)
+    email = models.EmailField(null=True)
     localizacao = models.CharField(max_length=1000)
-    descricao_breve = models.CharField(max_length=100, null=True);
-    descricao_longa = models.CharField(max_length=500, null=True);
-    status = models.BooleanField(default=True, null=True);
+    descricao_breve = models.CharField(max_length=100, null=True)
+    descricao_longa = models.CharField(max_length=500, null=True)
+    status = models.BooleanField(default=True, null=True)
     telefone = PhoneNumberField(region='BR')
-    fotos = models.ForeignKey(Fotos_Restaurante, on_delete=models.CASCADE, blank=True, null=True)
     cardapio = models.OneToOneField(Cardapio, on_delete=models.CASCADE, blank=True, null=True)
+
+
+class Classificacao_Usuario(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, blank=True, null=True)
+    nota = models.IntegerField()
     
+    def __str__(self):
+        return str(self.nota)
+
+class Classificacao_Restaurante(models.Model):
+    restaurante = models.ForeignKey(Restaurante, on_delete=models.CASCADE, blank=True, null=True)
+    nota = models.IntegerField()
+    
+    def __str__(self):
+        return str(self.nota)
+
+
+ 
+
+class Fotos_Restaurante(models.Model):
+    restaurante = models.ForeignKey(Restaurante, on_delete=models.CASCADE, blank=True, null=True)
+    foto = CloudinaryField('foto', null=True)
+    
+    def __str__(self):
+        return self.restaurante.nome
+
+class Fotos_Comida(models.Model):
+    comida = models.ForeignKey(Comida, on_delete=models.CASCADE, blank=True, null=True)
+    foto = CloudinaryField('foto', null=True)
+
+    def __str__(self):
+        return self.comida.nome
+
 
 class Pedido(models.Model):
-    nome = models.CharField(max_length=500)
+    nome = models.ForeignKey(Comida, on_delete=models.CASCADE)
     unidades = models.IntegerField()
     entrega = models.DateTimeField()
 
 
 class Pedido_Restaurante(models.Model):
-    cliente = models.OneToOneField(Usuario, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
     restaurante = models.ForeignKey(Restaurante, on_delete=models.CASCADE)
     
 
 class Comentario(models.Model):
-    autor = models.OneToOneField(Usuario, on_delete=models.CASCADE, blank=True, null=True)
+    autor = models.ForeignKey(Usuario, on_delete=models.CASCADE, blank=True, null=True)
     titulo = models.CharField(max_length=100)
     descricao = models.CharField(max_length=1000)
 
