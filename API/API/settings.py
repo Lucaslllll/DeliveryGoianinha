@@ -53,9 +53,9 @@ INSTALLED_APPS = [
 ]
 
 cloudinary.config(
-    cloud_name="thallisonapi",
-    api_key="63129355297",
-    api_secret="j0vdJBuNqQaCk7UZ"
+    cloud_name="dgckiuhse",
+    api_key="997897863546953",
+    api_secret="KF0puzA_bQq-9mXViiOJdiYDNNU"
 )
 
 
