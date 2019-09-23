@@ -36,6 +36,7 @@
   font-size: 1.325rem;
   line-height: 1;
   font-weight: bold;
+  text-align: center;
 }
 
 .containerPage__profileDesc{
@@ -46,14 +47,14 @@
   text-align: left;
   padding: 0 15px;
   line-height: 20px;
-  text-indent: 30px;
 }
 
 .containerPage__tags-frete{
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-between;
   font-size: 13px;
+  align-items: center;
 }
 
 .containerPage--tags{
@@ -65,9 +66,12 @@
 .containerPage--frete{
   border: 1px solid #DADADA;
   border-radius: 4px;
-  padding: 3px 10px;
+  padding: 2px 13px;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 14px;
+  background: #FFF;
+  color: #000;
 }
 
 .btn-card{

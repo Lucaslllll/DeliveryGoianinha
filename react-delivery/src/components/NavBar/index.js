@@ -4,6 +4,8 @@ import './style.css';
 import { isAuthenticated } from "../../services/auth";
 import { logout } from '../../services/auth';
 
+import logotipo from '../../assets/img/logo.png';
+
 import {
     Container,
     Collapse,
@@ -78,7 +80,9 @@ function NavBar(){
     return (
         <Navbar light fixed="top" expand="md" className={`bg-menu ${bgNavBar}`}>
             <Container>
-                <NavbarBrand href="/" className="text-color logo">DeviGO</NavbarBrand>
+                <NavbarBrand href="/" className="text-color logo">
+                    <img className="logotipo-img" src={logotipo} alt="logotipo" />
+                </NavbarBrand>
                 <NavbarToggler onClick={() => toggle()} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto item" navbar>

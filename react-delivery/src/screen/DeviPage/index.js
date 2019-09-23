@@ -57,8 +57,8 @@ function DeviPage() {
               start={0}
               stop={5}
               step={1}
-              fractions={2}
-              initialRating={2}
+              fractions={1}
+              initialRating={2.4}
               emptySymbol={<IoIosStarOutline className="iconRatingempty" />}
               fullSymbol={<IoIosStar className="iconRatingfull" />}
             />

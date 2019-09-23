@@ -5,6 +5,11 @@
     font-weight: bold; 
 }
 
+.logotipo-img{
+    width: 100px;
+    height: 100px;
+}
+
 .bgWhite{
     background: #FFF;
     border-bottom: 1px solid #e3672b; 
