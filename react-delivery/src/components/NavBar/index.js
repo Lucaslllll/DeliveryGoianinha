@@ -81,7 +81,7 @@ function NavBar(){
         <Navbar light fixed="top" expand="md" className={`bg-menu ${bgNavBar}`}>
             <Container>
                 <NavbarBrand href="/" className="text-color logo">
-                    <img className="logotipo-img" src={logotipo} alt="logotipo" />
+                    DeliveryGO
                 </NavbarBrand>
                 <NavbarToggler onClick={() => toggle()} />
                 <Collapse isOpen={isOpen} navbar>

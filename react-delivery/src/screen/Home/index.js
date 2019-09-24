@@ -28,11 +28,22 @@ export default function Home() {
   }, [pagination]);
 
   async function handleCard(){
-    await API.get(`/api/api/restaurante/?page=${pagination}`)
-    .then((data) => {  
-      setCards(data.data.results);
+    await API.get(`/api/user/?page=${pagination}`)
+    .then((data) => {
+      setSpinner(false);
+      if(pagination >= 2){
+        const deliverys = data.data.results
+        cards.push(deliverys)
+      }
+      else{
+        const deliverys = data.data.results
+        setCards(deliverys)
+      }
     })
-    .catch(console.log)
+    .catch((err) => {
+      setSpinner(false);
+      console.log(err);
+    })
   }
 
   function handleSpinner(){
@@ -83,7 +94,8 @@ export default function Home() {
             logotipoCard={img}
             onClick={() => handleCard()}
           />
-        ))}
+          )
+        )}
       </div>
       <div className="containerHome__btn-more">
         <div onClick={() => handleSpinner()} className="btn-more">
