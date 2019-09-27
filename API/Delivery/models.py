@@ -23,8 +23,6 @@ class Comida(models.Model):
     def __str__(self):
         return self.nome
 
-class Cardapio(models.Model):
-    comidas = models.ManyToManyField(Comida);
    
 
 
@@ -42,7 +40,10 @@ class Restaurante(models.Model):
     descricao_longa = models.CharField(max_length=500, null=True)
     status = models.BooleanField(default=True, null=True)
     telefone = PhoneNumberField(region='BR')
-    cardapio = models.OneToOneField(Cardapio, on_delete=models.CASCADE, blank=True, null=True)
+
+class Cardapio(models.Model):
+    restaurante = models.OneToOneField(Restaurante, on_delete=models.CASCADE, blank=True, null=True)
+    comidas = models.ManyToManyField(Comida)
 
 
 class Classificacao_Usuario(models.Model):
