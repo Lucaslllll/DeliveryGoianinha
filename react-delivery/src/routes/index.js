@@ -6,6 +6,7 @@ import LoginScreen from '../screen/Login';
 import {Route, Switch} from "react-router-dom";
 import LoginRoute from './LoginRoute';
 import PrivateRoute from './PrivateRoute';
+import Dashboard from '../screen/Dashboard';
 
 const Routes = () => (
     <>
@@ -15,6 +16,7 @@ const Routes = () => (
         <LoginRoute path="/Register" component={LoginScreen} />
         <PrivateRoute path="/Home" component={main} />
         <PrivateRoute path="/d/acaidelivery" component={main} />
+        <PrivateRoute path="/admin/" component={Dashboard} />
         <Route path="*" component={() => <h1 className="text-center">Page not found</h1>} />
       </Switch>
     </>

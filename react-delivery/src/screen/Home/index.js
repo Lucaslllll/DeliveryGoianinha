@@ -28,7 +28,7 @@ export default function Home() {
   }, [pagination]);
 
   async function handleCard(){
-    await API.get(`/api/user/?page=${pagination}`)
+    await API.get(`/api/restaurante/?page=${pagination}`)
     .then((data) => {
       setSpinner(false);
       if(pagination >= 2){
@@ -88,9 +88,9 @@ export default function Home() {
       <div className="cardHomeContainer animated fadeIn slower" >
         {cards.map((card) => (
           <Card key={card.id} 
-            nameCard={card.username}
-            descCard={card.email} 
-            status={true} 
+            nameCard={card.nome}
+            descCard={card.descricao_breve} 
+            status={card.status} 
             logotipoCard={img}
             onClick={() => handleCard()}
           />

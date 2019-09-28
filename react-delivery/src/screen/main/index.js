@@ -8,6 +8,7 @@ import CardPizza from '../CardPizza';
 import CardAcai from '../CardAcai';
 import Request from '../Request';
 import DeviPage from '../DeviPage';
+import Dashboard from '../Dashboard';
 import { Switch, Route } from 'react-router-dom';
 
 

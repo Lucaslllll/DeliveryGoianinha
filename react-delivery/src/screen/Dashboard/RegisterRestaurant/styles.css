@@ -1,0 +1,72 @@
+.registerRestaurant{
+    margin: 10vh 0;
+}
+.registerRestaurant--input{
+    text-align: center;
+}
+
+.registerRestaurant--title{
+    color: #B2BABB;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0 0 20px 0;
+}
+
+.registerRestaraunt--input-number{
+    display: flex;
+}
+.registerRestaraunt--input-number .input-group-text {
+    border-radius: .25rem 0 0 .25rem !important;
+    background: #DADADA;
+}
+
+.registerRestaraunt--input-number .number-input{
+    border-radius: 0 .25rem .25rem 0 !important;
+}
+
+.registerRestaurant--button{
+    display: flex;
+    justify-content: center;
+}
+
+.registerRestaurant--button > button{
+    width: 200px;
+    background: #e3672b;
+    border: none;
+}
+.registerRestaurant--button > button:hover{
+    background: #e3622b;
+}
+.registerRestaurant--button > button:focus{
+    background: #e3672b !important;
+}
+
+/* Editando dropzone */
+.dzu-dropzone{
+    overflow: hidden;
+}
+.dzu-inputLabel{
+    color: #e3672b;
+    overflow: hidden;
+}
+
+.dzu-dropzoneActive {
+    border-color: #e3672b;
+}
+.dzu-inputLabelWithFiles {
+    color: #e3672b;
+    display: none;
+}
+
+/* Editando o toast */
+.registerRestaurant--toast {
+    margin: 10vh 3vh;
+}
+.regisgterRestaurant__containerToast{
+    display: flex;
+    flex-direction: row-reverse;
+
+}
+.registerRestaurant--toast .ToastHeader{
+    color: #e3672b;
+}
