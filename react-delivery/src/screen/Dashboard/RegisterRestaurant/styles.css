@@ -57,16 +57,3 @@
     color: #e3672b;
     display: none;
 }
-
-/* Editando o toast */
-.registerRestaurant--toast {
-    margin: 10vh 3vh;
-}
-.regisgterRestaurant__containerToast{
-    display: flex;
-    flex-direction: row-reverse;
-
-}
-.registerRestaurant--toast .ToastHeader{
-    color: #e3672b;
-}

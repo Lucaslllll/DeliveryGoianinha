@@ -11,13 +11,11 @@ import {
   FormGroup, 
   Label, 
   Input,
-  Toast, 
-  ToastBody, 
-  ToastHeader
 } from 'reactstrap';
 
 import 'react-dropzone-uploader/dist/styles.css';
 import Dropzone from 'react-dropzone-uploader';
+import ToastWarn from '../../../components/ToastWarn';
 
 import API from '../../../services/api';
 import './styles.css';
@@ -34,11 +32,93 @@ export default function RegisterRestaurant() {
   const [_file, setFile] = useState('');
   const [spinner, setSpinner] = useState(false);
   const [toast, setToast] = useState(false);
+  const [toastError, setToastError] = useState(false);
   const [msg, setMsg] = useState('');
+  const [showCnpj, setShowCnpj] = useState('');
 
   useEffect(() => {
 
   }, [])
+
+  function handleCnpj(e) {
+    setCnpj(e);
+    if(e.length == 4){
+      setCnpj(_cnpj.concat('.'))
+      console.log(e);
+    }
+  }
+
+  function handleCheckCNPJ(cnpj = _cnpj){
+    
+    const firstDigitPesoCnpj = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+    let sumCnpj = 0;
+    firstDigitPesoCnpj.forEach((peso, indice) => {
+      const res = cnpj[indice]*peso;
+      sumCnpj += res;
+    });
+
+    const restFirstDigit = sumCnpj % 11;
+    if(restFirstDigit <= 2){
+      if(0 == cnpj[12]){
+        let secondDigitPesoCnpj = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+        sumCnpj = 0;
+        secondDigitPesoCnpj.forEach((peso, indice) => {
+          const res = cnpj[indice]*peso;
+          sumCnpj += res;
+        });
+
+        const restSecondDigit = sumCnpj % 11;
+
+        if(restSecondDigit <= 2){
+          if(0 == cnpj[13]){
+            return true;
+          }
+          else{
+            return false
+          }
+        }else{
+          const secondVerifyingDigit = 11 - restSecondDigit;
+          if (secondVerifyingDigit == cnpj[13]){
+            return true;
+          }else{
+            return false;
+          }
+        }
+      }else{
+        return false
+      }
+    }else{
+      const firstVerifyingDigit = 11 - restFirstDigit;
+      if(firstVerifyingDigit == cnpj[12]){
+        let secondDigitPesoCnpj = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+        sumCnpj = 0;
+        secondDigitPesoCnpj.forEach((peso, indice) => {
+          const res = cnpj[indice]*peso;
+          sumCnpj += res;
+        });
+
+        const restSecondDigit = sumCnpj % 11;
+
+        if(restSecondDigit <= 2){
+          if(0 == cnpj[13]){
+            return true;
+          }
+          else{
+            return false;
+          }
+        }else{
+          const secondVerifyingDigit = 11 - restSecondDigit;
+          if (secondVerifyingDigit == cnpj[13]){
+            return true;
+          }else{
+            return false;
+          }
+        }
+      }else{
+        return false;
+      }
+    }
+  }
 
   function handleChangeStatus({ meta, file }, status){ 
       if (status === 'done'){
@@ -51,38 +131,42 @@ export default function RegisterRestaurant() {
     e.preventDefault();
     setSpinner(true);
     if (!_userName || !_cnpj || !_localX || !_descBreve || !_descLong || !_telefone || !_file){
-      setSpinner(false);
-      setMsg('Preencha todos os dados para cadastrar um novo restaurante!');
-      setToast(true);
-      setTimeout(handleToast, 7000 );
+      handleShowToast('Preencha todos os dados para cadastrar um novo restaurante!', true);
     }
     else{
-      try{
-        const { data: { id, nome } } = await API.post('/api/restaurante/', {
-          nome: _userName,
-          cnpj: _cnpj,
-          localizacao: _localX,
-          descricao_breve: _descBreve,
-          descricao_longa: _descLong,
-          status: false,
-          telefone: '+55' + _telefone
-        })
+      if(handleCheckCNPJ()){
+        try{
+          const { data: { id, nome } } = await API.post('/api/restaurante/', {
+            nome: _userName,
+            cnpj: _cnpj,
+            localizacao: _localX,
+            descricao_breve: _descBreve,
+            descricao_longa: _descLong,
+            status: false,
+            telefone: '+55' + _telefone
+          })
+          
+          handleShowToast(`O ${nome} foi cadastrado com sucesso!`, false);
 
-        setSpinner(false);
-        setMsg(`O ${nome} foi cadastrado com sucesso!`);
-        setToast(true);
-        setTimeout(handleToast, 7000 );
-      }
-      catch(err){
-        setMsg('Erro de conexão com o servidor!');
-        setToast(true);
-        setTimeout(handleToast, 7000 );
-        setSpinner(false);
+        }
+        catch(err){
+          handleShowToast('Erro de conexão com o servidor!', true);
+        }
+      }else{
+        handleShowToast(`O CNPJ: ${_cnpj} é inválido!`, true);
       }
     }
   }
 
-  function handleToast(){
+  function handleShowToast(msg, toastError){
+    setToastError(toastError);
+    setMsg(msg);
+    setToast(true);
+    setSpinner(false);
+    setTimeout(handleDeacToast, 7000 );
+  }
+
+  function handleDeacToast(){
     setToast(false)
   }
 
@@ -102,7 +186,7 @@ export default function RegisterRestaurant() {
               </div>
             </Col>
             <Col>
-              <Input className="registerRestaurant--input" onChange={e => setCnpj(e.target.value)} type="text" name="cnpj" id="cnpj" placeholder="CNPJ" />
+              <Input maxLength="18" value={_cnpj} className="registerRestaurant--input" onChange={e => handleCnpj(e.target.value)} type="text" name="cnpj" id="cnpj" placeholder="CNPJ" />
             </Col>
           </Row>
         </FormGroup>
@@ -113,24 +197,32 @@ export default function RegisterRestaurant() {
           <Input className="registerRestaurant--input" type="textarea" name="descLong" onChange={e => setDescLong(e.target.value)} id="descLong" placeholder="Descrição longa" />
         </FormGroup>
         <FormGroup>
-          <Label>Localização</Label>
           <Row>
             <Col>
-              <Input className="registerRestaurant--input" type="text" name="localX" onChange={e => setLocalX(e.target.value)} id="localX" placeholder="X" />
+              <Label>Localização</Label>
+              <Row>
+                <Col>
+                  <Input className="registerRestaurant--input" type="text" name="localX" onChange={e => setLocalX(e.target.value)} id="localX" placeholder="X" />
+                </Col>
+                <Col>
+                  <Input className="registerRestaurant--input" type="text" name="localY" onChange={e => setDescLong(e.target.value)} id="localY" placeholder="Y" />
+                </Col>
+              </Row>
             </Col>
             <Col>
-              <Input className="registerRestaurant--input" type="text" name="localY" onChange={e => setDescLong(e.target.value)} id="localY" placeholder="Y" />
+              <Label>Tipo</Label>
+              <Input type="select" name="tipo" id="tipo">
+                <option>Açaí</option>
+                <option>Hamburguer</option>
+                <option>Pizza</option>
+                <option>Variado</option>
+                <option>Outro</option>
+              </Input>
             </Col>
           </Row>
         </FormGroup>
         <FormGroup >
-          <Input type="select" name="tipo" id="tipo">
-            <option>Açaí</option>
-            <option>Hamburguer</option>
-            <option>Pizza</option>
-            <option>Variado</option>
-            <option>Outro</option>
-          </Input>
+          
         </FormGroup>
         <FormGroup>
           <Label htmlFor="loo">Logo</Label>
@@ -152,21 +244,14 @@ export default function RegisterRestaurant() {
           </Button>
         </div>
       </Form>
-      {toast
+      {
+        toast
         ?
         <>
-        <div className="regisgterRestaurant__containerToast fixed-top">
-          <div className="registerRestaurant--toast">
-            <Toast>
-                <ToastHeader className="ToastHeader">
-                  DeliveryGO
-                </ToastHeader>
-                <ToastBody>
-                  { msg }
-                </ToastBody>
-            </Toast>
-          </div>
-        </div>
+          <ToastWarn
+            msg={msg}
+            toastError={toastError}
+          />
         </>
         :
         null

@@ -1,0 +1,23 @@
+/* Editando o toast */
+.toastWarn {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.toastWarn__Toast{
+    margin: 10vh 3vh;
+}
+.toastWarn .ToastHeader{
+    color: #e3672b;
+}
+.toastWarn--barProgress{
+    width: 0;
+    height: 10px;
+    background: #e3672b;
+    animation-name: ToastBarProgress;
+    animation-duration: 7s;
+}
+
+@keyframes ToastBarProgress {
+    from {width: 100%;}
+    to {width: 0%;}
+}
