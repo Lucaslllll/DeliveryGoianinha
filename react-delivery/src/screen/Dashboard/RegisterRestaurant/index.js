@@ -17,6 +17,7 @@ import 'react-dropzone-uploader/dist/styles.css';
 import Dropzone from 'react-dropzone-uploader';
 import ToastWarn from '../../../components/ToastWarn';
 import InputMask from 'react-input-mask';
+import {verifyedTel, verifyedCnpj} from '../../../components/verifyedAll';
 
 import API from '../../../services/api';
 import './styles.css';
@@ -41,81 +42,8 @@ export default function RegisterRestaurant() {
 
   }, [])
 
-  function handleCheckCNPJ(cnpj = _cnpj){
-    cnpj = cnpj.replace('.', '');
-    cnpj = cnpj.replace('.', '');
-    cnpj = cnpj.replace('/', '');
-    cnpj = cnpj.replace('-', '');
-
-    console.log(cnpj)
-    const firstDigitPesoCnpj = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-    let sumCnpj = 0;
-    firstDigitPesoCnpj.forEach((peso, indice) => {
-      const res = cnpj[indice]*peso;
-      sumCnpj += res;
-    });
-
-    const restFirstDigit = sumCnpj % 11;
-    if(restFirstDigit <= 2){
-      if(0 == cnpj[12]){
-        let secondDigitPesoCnpj = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-        sumCnpj = 0;
-        secondDigitPesoCnpj.forEach((peso, indice) => {
-          const res = cnpj[indice]*peso;
-          sumCnpj += res;
-        });
-
-        const restSecondDigit = sumCnpj % 11;
-
-        if(restSecondDigit <= 2){
-          if(0 == cnpj[13]){
-            return true;
-          }
-          else{
-            return false
-          }
-        }else{
-          const secondVerifyingDigit = 11 - restSecondDigit;
-          if (secondVerifyingDigit == cnpj[13]){
-            return true;
-          }else{
-            return false;
-          }
-        }
-      }else{
-        return false
-      }
-    }else{
-      const firstVerifyingDigit = 11 - restFirstDigit;
-      if(firstVerifyingDigit == cnpj[12]){
-        let secondDigitPesoCnpj = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-        sumCnpj = 0;
-        secondDigitPesoCnpj.forEach((peso, indice) => {
-          const res = cnpj[indice]*peso;
-          sumCnpj += res;
-        });
-
-        const restSecondDigit = sumCnpj % 11;
-
-        if(restSecondDigit <= 2){
-          if(0 == cnpj[13]){
-            return true;
-          }
-          else{
-            return false;
-          }
-        }else{
-          const secondVerifyingDigit = 11 - restSecondDigit;
-          if (secondVerifyingDigit == cnpj[13]){
-            return true;
-          }else{
-            return false;
-          }
-        }
-      }else{
-        return false;
-      }
-    }
+  function checkCNPJ(cnpj){
+    return verifyedCnpj(cnpj);
   }
 
   function handleChangeStatus({ meta, file }, status){ 
@@ -125,6 +53,15 @@ export default function RegisterRestaurant() {
       }
   }
 
+  function checkTel(e){
+    const [isTel, tel] = verifyedTel(e);
+    if(isTel){
+      setTelefone(verifyedTel(tel));
+    }else{
+      handleShowToast(`O Telefone: ${_telefone} é inválido!`, true)
+    }
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     setSpinner(true);
@@ -132,7 +69,7 @@ export default function RegisterRestaurant() {
       handleShowToast('Preencha todos os dados para cadastrar um novo restaurante!', true);
     }
     else{
-      if(handleCheckCNPJ()){
+      if( checkCNPJ(_cnpj) || checkTel(_telefone)){
         try{
           const { data: { id, nome } } = await API.post('/api/restaurante/', {
             nome: _userName,
@@ -151,10 +88,10 @@ export default function RegisterRestaurant() {
           handleShowToast('Erro de conexão com o servidor!', true);
         }
       }else{
-        handleShowToast(`O CNPJ: ${_cnpj} é inválido!`, true);
       }
     }
   }
+
 
   function handleShowToast(msg, toastError){
     setToastError(toastError);
@@ -175,12 +112,12 @@ export default function RegisterRestaurant() {
         <FormGroup>
           <Row>
             <Col>
-              <Input className="registerRestaurant--input" onChange={e => setUserName(e.target.value)} type="text" name="userName" id="userName" placeholder="Username" />
+              <Input className="registerRestaurant--input" onChange={e => setUserName(e.target.value)} type="text" name="userName" id="userName" placeholder="Nome" />
             </Col>
             <Col>
               <div className="registerRestaraunt--input-number">
                 <InputGroupAddon className="number-parents" addonType="prepend">+55</InputGroupAddon>
-                <InputMask onChange={e => setTelefone(e.target.value)} placeholder="Celular" className="number-input form-control" mask="(99) 99999 - 9999" />
+                <InputMask onChange={e => setTelefone(e.target.value)} placeholder="Celular" className="number-input form-control" mask="(99) 99999 - 9999"  maskChar={null} />
               </div>
             </Col>
             <Col>
