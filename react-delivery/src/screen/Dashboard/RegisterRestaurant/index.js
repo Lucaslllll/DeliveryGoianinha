@@ -16,6 +16,7 @@ import {
 import 'react-dropzone-uploader/dist/styles.css';
 import Dropzone from 'react-dropzone-uploader';
 import ToastWarn from '../../../components/ToastWarn';
+import InputMask from 'react-input-mask';
 
 import API from '../../../services/api';
 import './styles.css';
@@ -40,16 +41,13 @@ export default function RegisterRestaurant() {
 
   }, [])
 
-  function handleCnpj(e) {
-    setCnpj(e);
-    if(e.length == 4){
-      setCnpj(_cnpj.concat('.'))
-      console.log(e);
-    }
-  }
-
   function handleCheckCNPJ(cnpj = _cnpj){
-    
+    cnpj = cnpj.replace('.', '');
+    cnpj = cnpj.replace('.', '');
+    cnpj = cnpj.replace('/', '');
+    cnpj = cnpj.replace('-', '');
+
+    console.log(cnpj)
     const firstDigitPesoCnpj = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
     let sumCnpj = 0;
     firstDigitPesoCnpj.forEach((peso, indice) => {
@@ -182,11 +180,11 @@ export default function RegisterRestaurant() {
             <Col>
               <div className="registerRestaraunt--input-number">
                 <InputGroupAddon className="number-parents" addonType="prepend">+55</InputGroupAddon>
-                <Input className="number-input" type="text" onChange={e => setTelefone(e.target.value)} placeholder="Celular" />
+                <InputMask onChange={e => setTelefone(e.target.value)} placeholder="Celular" className="number-input form-control" mask="(99) 99999 - 9999" />
               </div>
             </Col>
             <Col>
-              <Input maxLength="18" value={_cnpj} className="registerRestaurant--input" onChange={e => handleCnpj(e.target.value)} type="text" name="cnpj" id="cnpj" placeholder="CNPJ" />
+              <InputMask onChange={e => setCnpj(e.target.value)} placeholder="CNPJ" className="registerRestaurant--input form-control" mask="99.999.999/9999-99" />
             </Col>
           </Row>
         </FormGroup>

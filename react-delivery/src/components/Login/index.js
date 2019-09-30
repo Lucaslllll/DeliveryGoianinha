@@ -20,11 +20,11 @@ function Login(){
     async function handleSingIn(){
         setSpinner(true);
         try{
-            const response = await API.post('/api/auth/login', {
+            const {data: {token}} = await API.post('/api/auth/login', {
                 username: email, 
                 password: password
             });
-            login(response.data.token);
+            login(token);
             setRedirect(true);
         }
         catch(err){
