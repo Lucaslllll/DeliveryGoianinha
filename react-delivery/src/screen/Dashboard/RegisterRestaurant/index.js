@@ -17,7 +17,7 @@ import 'react-dropzone-uploader/dist/styles.css';
 import Dropzone from 'react-dropzone-uploader';
 import ToastWarn from '../../../components/ToastWarn';
 import InputMask from 'react-input-mask';
-import {verifyedTel, verifyedCnpj} from '../../../components/verifyedAll';
+import { verifyedTel, verifyedCnpj } from '../../../components/verifyedAll';
 
 import API from '../../../services/api';
 import './styles.css';
@@ -43,7 +43,7 @@ export default function RegisterRestaurant() {
   }, [])
 
   function checkCNPJ(cnpj){
-    return verifyedCnpj(cnpj);
+    console.log(verifyedCnpj(cnpj))
   }
 
   function handleChangeStatus({ meta, file }, status){ 
@@ -56,9 +56,11 @@ export default function RegisterRestaurant() {
   function checkTel(e){
     const [isTel, tel] = verifyedTel(e);
     if(isTel){
-      setTelefone(verifyedTel(tel));
+      setTelefone(tel);
+      return true;
     }else{
       handleShowToast(`O Telefone: ${_telefone} é inválido!`, true)
+      return false;
     }
   }
 
@@ -69,7 +71,7 @@ export default function RegisterRestaurant() {
       handleShowToast('Preencha todos os dados para cadastrar um novo restaurante!', true);
     }
     else{
-      if( checkCNPJ(_cnpj) || checkTel(_telefone)){
+      if(checkCNPJ(_cnpj) && checkTel(_telefone)){
         try{
           const { data: { id, nome } } = await API.post('/api/restaurante/', {
             nome: _userName,
@@ -88,6 +90,7 @@ export default function RegisterRestaurant() {
           handleShowToast('Erro de conexão com o servidor!', true);
         }
       }else{
+        handleShowToast(`O CNPJ: ${_cnpj} é inválido!`, true);
       }
     }
   }
