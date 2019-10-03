@@ -25,39 +25,45 @@ export default function Home() {
   const [spinner, setSpinner] = useState(false);
 
   useEffect(() => {
-  async function isLogin(){
-    const {data}= await API.post('/verify-token/', {
-      pk: getID(),
-      token: getToken()
-    })
-    return data;
-  }  
-  async function handleCard(){
-    await API.get(`/api/restaurante/?page=${pagination}`)
-    .then((data) => {
-      setSpinner(false);
-      if(pagination >= 2){
-        const deliverys = data.data.results
-        cards.push(deliverys)
+    async function isLogin(){
+      try {
+        const {data} = await API.post('/verify-token/', {
+          pk: getID(),
+          token: getToken()
+        })
+        if(data){
+          handleCard();
+        }
+        else{
+          logout();
+          document.location.reload();
+        }
       }
-      else{
-        const deliverys = data.data.results
-        setCards(deliverys)
+      catch(err){
+        logout();
+        document.location.reload();
       }
-    })
-    .catch((err) => {
-      setSpinner(false);
-      console.log(err);
-    })
-  }
+    }  
+    async function handleCard(){
+      await API.get(`/api/restaurante/?page=${pagination}`)
+      .then((data) => {
+        setSpinner(false);
+        if(pagination >= 2){
+          const deliverys = data.data.results
+          cards.push(deliverys)
+        }
+        else{
+          const deliverys = data.data.results
+          setCards(deliverys)
+        }
+      })
+      .catch((err) => {
+        setSpinner(false);
+        console.log(err);
+      })
+    }
 
-  if(isLogin() === true){
-    handleCard();
-  }else{
-    logout();
-    document.location.reload();
-  }
-  
+    isLogin();
   }, []);
 
   function handleSpinner(){
