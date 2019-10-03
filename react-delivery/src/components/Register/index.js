@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Spinner } from 'reactstrap';
 
 import API from "../../services/api";
-import { login } from '../../services/auth';
+import { setToken, setID } from '../../services/auth';
 
 import './styles.css';
 
@@ -30,12 +30,13 @@ export default function Register(){
         else{
             try{
                 try{
-                    const response = await API.post('/api/auth/registrar', {
+                    const {data: { user:{ id }, token }} = await API.post('/api/auth/register', {
                         username: userName, 
                         password: password, 
                         email: email
                     });
-                    login(response.data.token);
+                    setToken(token);
+                    setID(id);
                     setRedirect(true);
                 }
                 catch(err){

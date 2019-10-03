@@ -40,46 +40,37 @@ export const verifyedCnpj = e => {
     }
 
     const restDigit = function(sum){
-      const rest = sum % 11;
-      const total = (11 - rest);
-      return total;
+      return sum % 11;
     }
 
 
     const firstDigitCnpj = function(cnpj, firstDigit = restDigit(sumCnpj([5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]))){
-      console.log(firstDigit);
-      if(firstDigit <= 2){
+      if(firstDigit < 2){
         if(0 == cnpj[12]){
-          console.log('Deu certo')
           return true;
           
         }else{
-          console.log('Deu errado')
           return false;
         }
       }else{
-        console.log(cnpj)
-        console.log(cnpj[12])
-        console.log(firstDigit)
-        if(firstDigit == cnpj[12]){
-          console.log('Deu certoo')
+        firstDigit = 11 - firstDigit;
+        if(firstDigit == cnpj[12]){    
           return true;
         }else{
-          console.log('Deu erradoo')
           return false;
         }
       }    
     }
 
     const secondDigitCnpj = function(cnpj, secondDigit = restDigit(sumCnpj([6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]))){
-      console.log(secondDigit);
-      if(secondDigit <= 2){
+      if(secondDigit < 2){
         if(0 == cnpj[13]){
           return true;
         }else{
           return false;
         }
       }else{
+        secondDigit = 11 - secondDigit;
         if(secondDigit == cnpj[13]){
           return true;
         }else{
@@ -93,9 +84,11 @@ export const verifyedCnpj = e => {
         if(secondDigitCnpj(cnpj)){
           return [true, cnpj];
         }else{
+          console.log('AQUI É')
           return [false];
         }  
       }else{
+        console.log('AQUI O')
         return [false];
       }
     }

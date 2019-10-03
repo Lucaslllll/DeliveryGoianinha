@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import API from "../../services/api";
-import { login } from "../../services/auth";
+import { setToken, setID } from "../../services/auth";
 import { Spinner } from 'reactstrap';
 
 
@@ -20,11 +20,12 @@ function Login(){
     async function handleSingIn(){
         setSpinner(true);
         try{
-            const {data: {token}} = await API.post('/api/auth/login', {
+            const {data: {user: {id}, token}} = await API.post('/api/auth/login', {
                 username: email, 
                 password: password
             });
-            login(token);
+            setToken(token);
+            setID(id);
             setRedirect(true);
         }
         catch(err){

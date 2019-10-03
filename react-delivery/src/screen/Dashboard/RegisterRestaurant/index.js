@@ -43,7 +43,14 @@ export default function RegisterRestaurant() {
   }, [])
 
   function checkCNPJ(cnpj){
-    console.log(verifyedCnpj(cnpj))
+    cnpj = verifyedCnpj(cnpj);
+    if(cnpj[0]){
+      setCnpj(cnpj[1]);
+      return true;
+    }else{
+      handleShowToast(`O CNPJ: ${_cnpj} é inválido!`, true);
+      return false;
+    }
   }
 
   function handleChangeStatus({ meta, file }, status){ 
@@ -57,9 +64,10 @@ export default function RegisterRestaurant() {
     const [isTel, tel] = verifyedTel(e);
     if(isTel){
       setTelefone(tel);
+      console.log(tel);
       return true;
     }else{
-      handleShowToast(`O Telefone: ${_telefone} é inválido!`, true)
+      handleShowToast(`O Telefone: ${_telefone} é inválido!`, true);
       return false;
     }
   }
@@ -80,7 +88,7 @@ export default function RegisterRestaurant() {
             descricao_breve: _descBreve,
             descricao_longa: _descLong,
             status: false,
-            telefone: '+55' + _telefone
+            telefone: '+55'.concat(_telefone)
           })
           
           handleShowToast(`O ${nome} foi cadastrado com sucesso!`, false);
@@ -89,8 +97,6 @@ export default function RegisterRestaurant() {
         catch(err){
           handleShowToast('Erro de conexão com o servidor!', true);
         }
-      }else{
-        handleShowToast(`O CNPJ: ${_cnpj} é inválido!`, true);
       }
     }
   }

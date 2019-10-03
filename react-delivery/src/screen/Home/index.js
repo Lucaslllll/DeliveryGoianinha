@@ -9,6 +9,7 @@ import Footer from '../../components/footer';
 
 import { Spinner } from 'reactstrap';
 import './styles.css';
+import { getID, getToken, logout } from '../../services/auth';
 
 
 const options = [
@@ -24,9 +25,13 @@ export default function Home() {
   const [spinner, setSpinner] = useState(false);
 
   useEffect(() => {
-    handleCard();
-  }, [pagination]);
-
+  async function isLogin(){
+    const {data}= await API.post('/verify-token/', {
+      pk: getID(),
+      token: getToken()
+    })
+    return data;
+  }  
   async function handleCard(){
     await API.get(`/api/restaurante/?page=${pagination}`)
     .then((data) => {
@@ -45,6 +50,15 @@ export default function Home() {
       console.log(err);
     })
   }
+
+  if(isLogin() === true){
+    handleCard();
+  }else{
+    logout();
+    document.location.reload();
+  }
+  
+  }, []);
 
   function handleSpinner(){
     setSpinner(true);
@@ -92,7 +106,6 @@ export default function Home() {
             descCard={card.descricao_breve} 
             status={card.status} 
             logotipoCard={img}
-            onClick={() => handleCard()}
           />
           )
         )}
