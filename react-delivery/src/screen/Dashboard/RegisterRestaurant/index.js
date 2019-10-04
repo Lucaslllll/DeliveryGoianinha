@@ -55,8 +55,7 @@ export default function RegisterRestaurant() {
 
   function handleChangeStatus({ meta, file }, status){ 
       if (status === 'done'){
-        setFile(file);
-        console.log(_file);
+        setFile(meta);
       }
   }
 
@@ -64,11 +63,24 @@ export default function RegisterRestaurant() {
     const [isTel, tel] = verifyedTel(e);
     if(isTel){
       setTelefone(tel);
-      console.log(tel);
       return true;
     }else{
       handleShowToast(`O Telefone: ${_telefone} é inválido!`, true);
       return false;
+    }
+  }
+
+  async function handleFile(id){
+    console.log(_file);
+    try{
+      await API.post('/api/foto_restaurante', {
+        foto: _file,
+        restaurante: id
+      });
+      handleShowToast(`O ${_userName} foi cadastrado com sucesso!`, false);      
+    }
+    catch(err){
+
     }
   }
 
@@ -81,7 +93,7 @@ export default function RegisterRestaurant() {
     else{
       if(checkCNPJ(_cnpj) && checkTel(_telefone)){
         try{
-          const { data: { id, nome } } = await API.post('/api/restaurante/', {
+          const { data: { id } } = await API.post('/api/restaurante/', {
             nome: _userName,
             cnpj: _cnpj,
             localizacao: _localX,
@@ -91,8 +103,7 @@ export default function RegisterRestaurant() {
             telefone: '+55'.concat(_telefone)
           })
           
-          handleShowToast(`O ${nome} foi cadastrado com sucesso!`, false);
-
+          handleFile(id);
         }
         catch(err){
           handleShowToast('Erro de conexão com o servidor!', true);
