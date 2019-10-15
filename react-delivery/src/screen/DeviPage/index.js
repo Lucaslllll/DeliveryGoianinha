@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 
+import Map from '../../components/Maps';
 import Footer from '../../components/footer';
 import imgProfile from '../../assets/img/empresa.png';
 import kitchen from '../../assets/img/kitchen.jpg';
@@ -120,7 +121,7 @@ function DeviPage({match}) {
       <div className="containerPage--row">
         <div className="containerPage--destaques">
           <div className="containerPage--destaques__des">
-            
+              <Map />
           </div>
         </div>
       </div>

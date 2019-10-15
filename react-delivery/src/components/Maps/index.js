@@ -1,21 +1,45 @@
-import React from 'react';
+import React,{ useState } from 'react'
+import MapGL, {GeolocateControl } from 'react-map-gl'
+// import config from '../config'
+import 'mapbox-gl/dist/mapbox-gl.css'
 
-import './styles.css';
+const TOKEN='pk.eyJ1IjoiamVmZmVzc29uIiwiYSI6ImNrMTJxY2h6ejAxaDEzaHJzb2FnZWh0cW8ifQ.F9TtrJNh4oWMad4FuFoOxg'
 
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+const geolocateStyle = {
+  float: 'left',
+  margin: '50px',
+  padding: '10px'
+};
 
-function MapContainer(props) {
+const Map = () => {
+
+  const [viewport, setViewPort ] = useState({
+    width: "100%",
+    height: 900,
+    latitude: -6.2661907,
+    longitude: -35.208553,
+    zoom: 14.79
+  })
+
+  const _onViewportChange = viewport => setViewPort({...viewport, transitionDuration: 0 })
+  
   return (
-    <>
-      <Map
-          google={props.google}
-          zoom={15}
-          initialCenter={{ lat: -6.281602, lng: -35.196313}}
+    <div style={{ margin: '0 auto'}}>
+      <h1 style={{textAlign: 'center', fontSize: '25px', fontWeight: 'bolder' }}>GeoLocator: Click To Find Your Location or click <a href="/search">here</a> to search for a location</h1>
+      <MapGL
+        {...viewport}
+        mapboxApiAccessToken={TOKEN}
+        mapStyle="mapbox://styles/mapbox/dark-v8"
+        onViewportChange={_onViewportChange}
+      >
+        <GeolocateControl
+          style={geolocateStyle}
+          positionOptions={{enableHighAccuracy: true}}
+          trackUserLocation={true}
         />
-    </>
-  );
+      </MapGL>
+    </div>
+  )
 }
 
-export default GoogleApiWrapper({
-  apiKey: 'AIzaSyB4CnwhCHJpcBGuWuRMFNyv0pQIIiJTHyc'
-})(MapContainer);
+export default Map
