@@ -15,7 +15,7 @@ const Routes = () => (
         <LoginRoute exact path="/Login" component={LoginScreen} />
         <LoginRoute path="/Register" component={LoginScreen} />
         <PrivateRoute path="/Home" component={main} />
-        <PrivateRoute path="/d/acaidelivery" component={main} />
+        <PrivateRoute path="/d/:slug" component={main} />
         <PrivateRoute path="/admin/" component={Dashboard} />
         <Route path="*" component={() => <h1 className="text-center">Page not found</h1>} />
       </Switch>

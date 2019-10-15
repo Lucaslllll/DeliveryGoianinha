@@ -47,22 +47,22 @@
 
 .containerFooter__col--title{
     text-align: left;
-    color: #839192;
+    color: #797D7F;
 
 }
 
 .containerFooter__row--2 .containerFooter__col--link{
     font-size: 1.4em;
     font-weight: bold;
-    color: #A6ACAF;
-}
-
-.containerFooter__row--2 .containerFooter__col--link:hover{
     color: #717D7E;
 }
 
+.containerFooter__row--2 .containerFooter__col--link:hover{
+    color: #7F8C8D;
+}
+
 .containerFooter__col--link{
-    color: #A6ACAF;
+    color: #7F8C8D;
     font-size: 18px;
     text-align: left;
     transition: 0.2s;
@@ -71,7 +71,7 @@
 
 .containerFooter__col--copy{
     width: 300px;
-    color: #A6ACAF;
+    color: #7F8C8D;
 }
 
 .containerFooter__col--link:hover{

@@ -18,7 +18,7 @@ function Main() {
       <div className="containerMain">
         <Switch>
           <Route path="/Home" exact component={Home} />
-          <Route path="/d/acaidelivery" exact component={DeviPage} />
+          <Route path="/d/:slug" exact component={DeviPage} />
           <Route path="/Home/Pizza" exact component={CardPizza} />
           <Route path="/Home/Acai" exact component={CardAcai} />
           <Route path="/Home/Request" exact component={Request} />

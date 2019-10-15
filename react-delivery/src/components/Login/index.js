@@ -20,13 +20,17 @@ function Login(){
     async function handleSingIn(){
         setSpinner(true);
         try{
-            const {data: {user: {id}, token}} = await API.post('/api/auth/login', {
-                username: email, 
+            const {data: {user: {id}, token, estado}} = await API.post('/api/auth/login', {
+                email: email, 
                 password: password
             });
-            setToken(token);
-            setID(id);
-            setRedirect(true);
+            if(estado){
+                setToken(token);
+                setID(id);
+                setRedirect(true);
+            }else{
+                
+            }
         }
         catch(err){
             setMessage('Dados incorretos!');

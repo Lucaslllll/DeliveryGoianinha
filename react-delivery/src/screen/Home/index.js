@@ -23,6 +23,7 @@ export default function Home() {
   // const [cardFilters, setCardsFilters] = useState([]);
   const [pagination, setPagination] = useState(1);
   const [spinner, setSpinner] = useState(false);
+  const [endPage, setEndPage] = useState(false);
 
   useEffect(() => {
     async function isLogin(){
@@ -43,40 +44,33 @@ export default function Home() {
         logout();
         document.location.reload();
       }
-    }  
-    async function handleCard(){
-      await API.get(`/api/restaurante/?page=${pagination}`)
-      .then((data) => {
-        setSpinner(false);
-        if(pagination >= 2){
-          const deliverys = data.data.results
-          cards.push(deliverys)
-        }
-        else{
-          const deliverys = data.data.results
-          setCards(deliverys)
-        }
-      })
-      .catch((err) => {
-        setSpinner(false);
-        console.log(err);
-      })
     }
 
     isLogin();
   }, []);
 
-  function handleSpinner(){
-    setSpinner(true);
+    
+  async function handleCard(){
+    try{
+      const {data: {results}} = await API.get(`/api/restaurante/?page=${pagination}`)
+      setSpinner(false);
+      setCards([...cards, ...results]);
+    }
+    catch(err){
+      setEndPage(true);
+    }
   }
+  useEffect(() => {
+    handleCard();
+  }, [pagination])
 
   function handlePagination(){
-    setPagination(2);
-    console.log(cards);
+    setSpinner(true);
+    setPagination(pagination + 1);
   }
 
   return (
-    <div onClick={() => handlePagination()} className="containerHome">
+    <div className="containerHome">
       <div className="containerCardFilter">
         <div className="animated bounceInLeft slower">
           <CardFilter />
@@ -117,16 +111,23 @@ export default function Home() {
         )}
       </div>
       <div className="containerHome__btn-more">
-        <div onClick={() => handleSpinner()} className="btn-more">
-          {
-              spinner
-            ?
-              <Spinner size="sm" />
-            :
-              <>Ver mais</>
-          }
-        </div>
+        {
+          endPage
+          ?
+          <>FIM!</>
+          :
+          <div onClick={() => handlePagination()} className="btn-more">
+            {
+                spinner
+              ?
+                <Spinner size="sm" />
+              :
+                <>Ver mais</>
+            }
+          </div>
+        }
       </div>
+
       <Footer />
     </div>
   );

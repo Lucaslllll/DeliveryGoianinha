@@ -5,13 +5,12 @@ import { Link } from 'react-router-dom';
 import Rating from 'react-rating';
 
 import { IoIosStarOutline, IoIosStar } from 'react-icons/io'; 
-import { MdRestaurantMenu } from 'react-icons/md';
 
 import './styles.css';
 
 function Card(props) {
   return(
-    <>
+    <Link to="/deliveryPage" className="card--link">
       <div className="containerCard">
         <div className="containerStatus">
           { props.status
@@ -21,14 +20,18 @@ function Card(props) {
               <div className="status offline">Offline</div>
           }
         </div>
-        <div className="containerImg">
-          <img src={props.logotipoCard} alt="logotipo do delivery" className="img-delivery" />
-        </div>
-        <div className="title">
-          <h4 className="desc">{props.nameCard}</h4>
-        </div>
-        <div className="containerDesc">
-          <p className="desc">{props.descCard}</p>
+        <div className="containerCard--info">
+          <div className="containerImg">
+            <img src={props.logotipoCard} alt="logotipo do delivery" className="img-delivery" />
+          </div>
+          <div className="containerCard--title_desc">
+            <div>
+              <h4 className="title">{props.nameCard}</h4>
+            </div>
+            <div className="containerDesc">
+              <p className="desc">{props.descCard}</p>
+            </div>
+          </div>
         </div>
         <div className="containerRating">
           <Rating 
@@ -41,11 +44,8 @@ function Card(props) {
             fullSymbol={<IoIosStar className="iconRatingfull" />}
           />
         </div>
-        <div className="containerButton">
-          <Link className="btn-delivery" to="/deliveryPage"><MdRestaurantMenu className="iconRestaurant"/><span className="restaurant-span">Cardápio</span></Link>
-        </div>
       </div>
-    </>
+    </Link>
   );
 }
 

@@ -4,6 +4,12 @@
   flex-direction: column;
 }
 
+.containerPageHeader{
+  display: flex;
+  justify-content: center;
+  padding: 0 25px;
+}
+
 .containerPage--row{
   display: flex;
   flex-direction: row;
