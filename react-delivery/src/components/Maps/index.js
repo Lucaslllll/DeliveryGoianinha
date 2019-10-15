@@ -1,9 +1,12 @@
-import React,{ useState } from 'react'
-import MapGL, {GeolocateControl } from 'react-map-gl'
-// import config from '../config'
-import 'mapbox-gl/dist/mapbox-gl.css'
+import React,{ useState } from 'react';
+import { FaMapMarkerAlt } from "react-icons/fa";
 
-const TOKEN='pk.eyJ1IjoiamVmZmVzc29uIiwiYSI6ImNrMTJxY2h6ejAxaDEzaHJzb2FnZWh0cW8ifQ.F9TtrJNh4oWMad4FuFoOxg'
+import MapGL, {GeolocateControl, Marker } from 'react-map-gl';
+// import config from '../config'
+import 'mapbox-gl/dist/mapbox-gl.css';
+import './styles.css';
+
+const TOKEN="pk.eyJ1IjoiamVmZmVzc29uIiwiYSI6ImNrMTJxY2h6ejAxaDEzaHJzb2FnZWh0cW8ifQ.F9TtrJNh4oWMad4FuFoOxg";
 
 const geolocateStyle = {
   float: 'left',
@@ -11,25 +14,24 @@ const geolocateStyle = {
   padding: '10px'
 };
 
-const Map = () => {
+const Maps = (props) => {
 
   const [viewport, setViewPort ] = useState({
     width: "100%",
-    height: 900,
-    latitude: -6.2661907,
-    longitude: -35.208553,
-    zoom: 14.79
+    height: "100%",
+    latitude: props.latitude,
+    longitude: props.longitude,
+    zoom: 15
   })
 
-  const _onViewportChange = viewport => setViewPort({...viewport, transitionDuration: 0 })
+  const _onViewportChange = viewport => setViewPort({...viewport, transitionDuration: 10 })
   
   return (
-    <div style={{ margin: '0 auto'}}>
-      <h1 style={{textAlign: 'center', fontSize: '25px', fontWeight: 'bolder' }}>GeoLocator: Click To Find Your Location or click <a href="/search">here</a> to search for a location</h1>
+    <div style={{ margin: '0 auto'}} className="containerMap">
       <MapGL
         {...viewport}
         mapboxApiAccessToken={TOKEN}
-        mapStyle="mapbox://styles/mapbox/dark-v8"
+        mapStyle="mapbox://styles/mapbox/streets-v11"
         onViewportChange={_onViewportChange}
       >
         <GeolocateControl
@@ -37,9 +39,12 @@ const Map = () => {
           positionOptions={{enableHighAccuracy: true}}
           trackUserLocation={true}
         />
+        <Marker key={`marker-1`} longitude={props.longitude} latitude={props.latitude}>
+          <FaMapMarkerAlt />
+        </Marker>
       </MapGL>
     </div>
   )
 }
 
-export default Map
+export default Maps;

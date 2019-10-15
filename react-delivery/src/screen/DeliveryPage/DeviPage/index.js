@@ -2,25 +2,28 @@ import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 
-import Map from '../../components/Maps';
-import Footer from '../../components/footer';
-import imgProfile from '../../assets/img/empresa.png';
-import kitchen from '../../assets/img/kitchen.jpg';
+//============= Import map ============/
+import Maps from '../../../components/Maps';
 
 
-import { getID, getToken, logout } from '../../services/auth';
-import API from '../../services/api';
+import Footer from '../../../components/footer';
+import imgProfile from '../../../assets/img/empresa.png';
+import kitchen from '../../../assets/img/kitchen.jpg';
+
+
+import { getID, getToken, logout } from '../../../services/auth';
+import API from '../../../services/api';
 
 import Rating from 'react-rating';
 
-import { IoIosStarOutline, IoIosStar } from 'react-icons/io'; 
+import { IoIosStarOutline, IoIosStar, IoIosBody } from 'react-icons/io'; 
 import { MdRestaurantMenu } from 'react-icons/md';
 
 function DeviPage({match}) {
   const [restaurant, setRestaurantes] = useState({});
 
   useEffect(() => {
-    async function isLogin(){
+    (async function isLogin(){
       try {
         const {data} = await API.post('/verify-token/', {
           pk: getID(),
@@ -38,9 +41,7 @@ function DeviPage({match}) {
         logout();
         document.location.reload();
       }
-    }
-
-    isLogin();
+    }())
   }, [])
 
   async function handleRestaurant(){
@@ -119,9 +120,13 @@ function DeviPage({match}) {
         </div>
       </div>
       <div className="containerPage--row">
-        <div className="containerPage--destaques">
-          <div className="containerPage--destaques__des">
-              <Map />
+        <div className="containerPage--map">
+          <h3 className="containerPage--map__title">Localização</h3>
+          <div className="containerPage--map__map">
+            <Maps 
+              latitude={-6.26690006256104}
+              longitude={-35.2089996337891}
+            />
           </div>
         </div>
       </div>

@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
 
-import Card from '../../components/Card';
-import img from '../../assets/img/empresa.png';
-import API from '../../services/api';
-import CardFilter from '../../components/CardFilter';
+import Card from '../../../components/Card';
+import img from '../../../assets/img/empresa.png';
+import API from '../../../services/api';
+import CardFilter from '../../../components/CardFilter';
 import Select from 'react-select';
-import Footer from '../../components/footer';
+import Footer from '../../../components/footer';
 
 import { Spinner } from 'reactstrap';
 import './styles.css';
-import { getID, getToken, logout } from '../../services/auth';
+import { getID, getToken, logout } from '../../../services/auth';
 
 
 const options = [
@@ -101,7 +101,9 @@ export default function Home() {
       </div>
       <div className="cardHomeContainer animated fadeIn slower" >
         {cards.map((card) => (
-          <Card key={card.id} 
+          <Card 
+            key={card.id}
+            cardLink={card.id} 
             nameCard={card.nome}
             descCard={card.descricao_breve} 
             status={card.status} 

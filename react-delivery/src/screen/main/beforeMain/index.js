@@ -2,7 +2,7 @@ import React from 'react';
 
 import './styles.css';
 
-import CardBeforeMain from '../../components/cardBeforeMain';
+import CardBeforeMain from '../../../components/cardBeforeMain';
 
 function BeforeMain() {
   return(

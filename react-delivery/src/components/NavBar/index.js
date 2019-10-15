@@ -6,6 +6,9 @@ import { logout } from '../../services/auth';
 
 import logotipo from '../../assets/img/logo.png';
 
+//============ Import Link ===========/
+import {Link} from 'react-router-dom';
+
 import {
     Container,
     Collapse,
@@ -80,8 +83,8 @@ function NavBar(){
     return (
         <Navbar light fixed="top" expand="md" className={`bg-menu ${bgNavBar}`}>
             <Container>
-                <NavbarBrand href="/" className="text-color logo">
-                    DeliveryGO
+                <NavbarBrand>
+                    <Link className="text-color logo" to="/Home">DeliveryGO</Link>
                 </NavbarBrand>
                 <NavbarToggler onClick={() => toggle()} />
                 <Collapse isOpen={isOpen} navbar>

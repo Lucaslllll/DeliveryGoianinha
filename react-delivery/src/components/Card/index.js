@@ -10,7 +10,7 @@ import './styles.css';
 
 function Card(props) {
   return(
-    <Link to="/deliveryPage" className="card--link">
+    <Link to={`/d/${props.cardLink}`} className="card--link">
       <div className="containerCard">
         <div className="containerStatus">
           { props.status

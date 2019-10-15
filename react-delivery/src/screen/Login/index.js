@@ -23,17 +23,17 @@ function LoginScreen(){
 	        	<div className="wallpaper">
 	            	<Wallpaper />
 	         	</div>
-						<div className="wallpaperLogin">
-						{ transitions.map(({ item, props, key }) => (
-							<animated.div key={key} style={props} className="login" >
-								<Switch location={item}>
-									<Route exact path="/" component={beforeLogin} />
-									<Route path="/Login" component={Login} />
-									<Route path="/Register" component={Register} />
-								</Switch>
-							</animated.div>
-						)) }
-						</div>
+				<div className="wallpaperLogin">
+				{ transitions.map(({ item, props, key }) => (
+					<animated.div key={key} style={props} className="login" >
+						<Switch location={item}>
+							<Route exact path="/" component={beforeLogin} />
+							<Route path="/Login" component={Login} />
+							<Route path="/Register" component={Register} />
+						</Switch>
+					</animated.div>
+				)) }
+				</div>
 			</div>
 		</>
 	);
