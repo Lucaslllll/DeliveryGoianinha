@@ -7,6 +7,8 @@ import Maps from '../../../components/Maps';
 
 
 import Footer from '../../../components/footer';
+import CardComment from '../../../components/cardComment';
+
 import imgProfile from '../../../assets/img/empresa.png';
 import kitchen from '../../../assets/img/kitchen.jpg';
 
@@ -117,6 +119,11 @@ function DeviPage({match}) {
           <div className="containerPage--galery--img">
             <img src={kitchen} alt="imagem da galeria" />
           </div>
+        </div>
+      </div>
+      <div className="containerPage--row">
+        <div className="containerPage--comments">
+          <CardComment />
         </div>
       </div>
       <div className="containerPage--row">

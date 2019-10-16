@@ -1,0 +1,36 @@
+.containerComment{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0px 20px 20px 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: .2s ease-in-out;
+    cursor: pointer;
+}
+
+.containerComment:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.containerComment--photo{
+    display: flex;
+    justify-content: center;
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.3); */
+}
+
+.containerComment--photo img{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+}
+.containerComment--name h3{
+    font-size: 1.1em;
+    text-align: center;
+    /* padding: 10px 0 0 0; */
+}
+.containerComment--comment{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-style: italic;
+}
