@@ -1,128 +1,145 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import { 
-  Spinner, 
-  Container, 
-  InputGroupAddon, 
-  Col, 
-  Row, 
-  Button, 
-  Form, 
-  FormGroup, 
-  Label, 
-  Input,
-} from 'reactstrap';
+import {
+  Spinner,
+  Container,
+  InputGroupAddon,
+  Col,
+  Row,
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input
+} from "reactstrap";
 
-import 'react-dropzone-uploader/dist/styles.css';
-import Dropzone from 'react-dropzone-uploader';
-import ToastWarn from '../../../components/ToastWarn';
-import InputMask from 'react-input-mask';
-import { verifyedTel, verifyedCnpj } from '../../../components/verifyedAll';
+import "react-dropzone-uploader/dist/styles.css";
+import Dropzone from "react-dropzone-uploader";
+import ToastWarn from "../../../components/ToastWarn";
+import InputMask from "react-input-mask";
+import { verifyedTel, verifyedCnpj } from "../../../components/verifyedAll";
 
-import API from '../../../services/api';
-import './styles.css';
-
+import API from "../../../services/api";
+import "./styles.css";
 
 export default function RegisterRestaurant() {
-
-  const [_cnpj, setCnpj] = useState('');
-  const [_userName, setUserName] = useState('');
-  const [_telefone, setTelefone] = useState('');
-  const [_localX, setLocalX] = useState('');
-  const [_descBreve, setDescBreve] = useState('');
-  const [_descLong, setDescLong] = useState('');
-  const [_file, setFile] = useState('');
+  const [_cnpj, setCnpj] = useState("");
+  const [_userName, setUserName] = useState("");
+  const [_slug, setSlug] = useState("");
+  const [_telefone, setTelefone] = useState("");
+  const [_localX, setLocalX] = useState("");
+  const [_descBreve, setDescBreve] = useState("");
+  const [_descLong, setDescLong] = useState("");
+  const [_file, setFile] = useState("");
   const [spinner, setSpinner] = useState(false);
   const [toast, setToast] = useState(false);
   const [toastError, setToastError] = useState(false);
-  const [msg, setMsg] = useState('');
-  const [showCnpj, setShowCnpj] = useState('');
+  const [msg, setMsg] = useState("");
+  const [showCnpj, setShowCnpj] = useState("");
 
-  useEffect(() => {
+  useEffect(() => {}, []);
 
-  }, [])
-
-  function checkCNPJ(cnpj){
+  function checkCNPJ(cnpj) {
     cnpj = verifyedCnpj(cnpj);
-    if(cnpj[0]){
+    if (cnpj[0]) {
       setCnpj(cnpj[1]);
       return true;
-    }else{
+    } else {
       handleShowToast(`O CNPJ: ${_cnpj} é inválido!`, true);
       return false;
     }
   }
 
-  function handleChangeStatus({ meta, file }, status){ 
-      if (status === 'done'){
-        setFile(meta);
-      }
+  function handleChangeStatus({ meta, file }, status) {
+    if (status === "done") {
+      setFile(meta);
+    }
   }
 
-  function checkTel(e){
+  function checkTel(e) {
     const [isTel, tel] = verifyedTel(e);
-    if(isTel){
+    if (isTel) {
       setTelefone(tel);
       return true;
-    }else{
+    } else {
       handleShowToast(`O Telefone: ${_telefone} é inválido!`, true);
       return false;
     }
   }
 
-  async function handleFile(id){
+  async function handleFile(id) {
     console.log(_file);
-    try{
-      await API.post('/api/foto_restaurante', {
-        foto: _file,
-        restaurante: id
-      });
-      handleShowToast(`O ${_userName} foi cadastrado com sucesso!`, false);      
-    }
-    catch(err){
-
-    }
+    const formData = new FormData();
+    formData.append(_userName, _file);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data"
+      }
+    };
+    try {
+      await API.post(
+        "/api/foto_restaurante",
+        {
+          foto: formData,
+          restaurante: id
+        },
+        config
+      );
+      handleShowToast(`O ${_userName} foi cadastrado com sucesso!`, false);
+    } catch (err) {}
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     setSpinner(true);
-    if (!_userName || !_cnpj || !_localX || !_descBreve || !_descLong || !_telefone || !_file){
-      handleShowToast('Preencha todos os dados para cadastrar um novo restaurante!', true);
-    }
-    else{
-      if(checkCNPJ(_cnpj) && checkTel(_telefone)){
-        try{
-          const { data: { id } } = await API.post('/api/restaurante/', {
+    if (
+      !_userName ||
+      !_slug ||
+      !_cnpj ||
+      !_localX ||
+      !_descBreve ||
+      !_descLong ||
+      !_telefone ||
+      !_file
+    ) {
+      handleShowToast(
+        "Preencha todos os dados para cadastrar um novo restaurante!",
+        true
+      );
+    } else {
+      if (checkCNPJ(_cnpj) && checkTel(_telefone)) {
+        try {
+          const {
+            data: { id }
+          } = await API.post("/api/restaurante/", {
             nome: _userName,
             cnpj: _cnpj,
+            slug: _slug,
             localizacao: _localX,
             descricao_breve: _descBreve,
             descricao_longa: _descLong,
             status: false,
-            telefone: '+55'.concat(_telefone)
-          })
-          
+            telefone: "+55".concat(_telefone)
+          });
+
           handleFile(id);
-        }
-        catch(err){
-          handleShowToast('Erro de conexão com o servidor!', true);
+        } catch (err) {
+          handleShowToast("Erro de conexão com o servidor!", true);
         }
       }
     }
   }
 
-
-  function handleShowToast(msg, toastError){
+  function handleShowToast(msg, toastError) {
     setToastError(toastError);
     setMsg(msg);
     setToast(true);
     setSpinner(false);
-    setTimeout(handleDeacToast, 7000 );
+    setTimeout(handleDeacToast, 7000);
   }
 
-  function handleDeacToast(){
-    setToast(false)
+  function handleDeacToast() {
+    setToast(false);
   }
 
   return (
@@ -132,24 +149,68 @@ export default function RegisterRestaurant() {
         <FormGroup>
           <Row>
             <Col>
-              <Input className="registerRestaurant--input" onChange={e => setUserName(e.target.value)} type="text" name="userName" id="userName" placeholder="Nome" />
+              <Input
+                className="registerRestaurant--input"
+                onChange={e => setUserName(e.target.value)}
+                type="text"
+                name="userName"
+                id="userName"
+                placeholder="Nome"
+              />
+            </Col>
+            <Col>
+              <Input
+                className="registerRestaurant--input"
+                onChange={e => setSlug(e.target.value)}
+                type="text"
+                name="slug"
+                id="slug"
+                placeholder="slug"
+              />
             </Col>
             <Col>
               <div className="registerRestaraunt--input-number">
-                <InputGroupAddon className="number-parents" addonType="prepend">+55</InputGroupAddon>
-                <InputMask onChange={e => setTelefone(e.target.value)} placeholder="Celular" className="number-input form-control" mask="(99) 99999 - 9999"  maskChar={null} />
+                <InputGroupAddon className="number-parents" addonType="prepend">
+                  +55
+                </InputGroupAddon>
+                <InputMask
+                  onChange={e => setTelefone(e.target.value)}
+                  placeholder="Celular"
+                  className="number-input form-control"
+                  mask="(99) 99999 - 9999"
+                  maskChar={null}
+                />
               </div>
             </Col>
             <Col>
-              <InputMask onChange={e => setCnpj(e.target.value)} placeholder="CNPJ" className="registerRestaurant--input form-control" mask="99.999.999/9999-99" />
+              <InputMask
+                onChange={e => setCnpj(e.target.value)}
+                placeholder="CNPJ"
+                className="registerRestaurant--input form-control"
+                mask="99.999.999/9999-99"
+              />
             </Col>
           </Row>
         </FormGroup>
         <FormGroup>
-          <Input className="registerRestaurant--input" type="textarea" onChange={e => setDescBreve(e.target.value)} name="descBreve" id="descBreve" placeholder="Descrição breve" />
+          <Input
+            className="registerRestaurant--input"
+            type="textarea"
+            onChange={e => setDescBreve(e.target.value)}
+            name="descBreve"
+            id="descBreve"
+            placeholder="Descrição breve"
+          />
         </FormGroup>
         <FormGroup>
-          <Input className="registerRestaurant--input" type="textarea" name="descLong" onChange={e => setDescLong(e.target.value)} id="descLong" placeholder="Descrição longa" />
+          <Input
+            className="registerRestaurant--input"
+            type="textarea"
+            name="descLong"
+            onChange={e => setDescLong(e.target.value)}
+            id="descLong"
+            placeholder="Descrição longa"
+          />
         </FormGroup>
         <FormGroup>
           <Row>
@@ -157,10 +218,24 @@ export default function RegisterRestaurant() {
               <Label>Localização</Label>
               <Row>
                 <Col>
-                  <Input className="registerRestaurant--input" type="text" name="localX" onChange={e => setLocalX(e.target.value)} id="localX" placeholder="X" />
+                  <Input
+                    className="registerRestaurant--input"
+                    type="text"
+                    name="localX"
+                    onChange={e => setLocalX(e.target.value)}
+                    id="localX"
+                    placeholder="X"
+                  />
                 </Col>
                 <Col>
-                  <Input className="registerRestaurant--input" type="text" name="localY" onChange={e => setDescLong(e.target.value)} id="localY" placeholder="Y" />
+                  <Input
+                    className="registerRestaurant--input"
+                    type="text"
+                    name="localY"
+                    onChange={e => setDescLong(e.target.value)}
+                    id="localY"
+                    placeholder="Y"
+                  />
                 </Col>
               </Row>
             </Col>
@@ -176,41 +251,27 @@ export default function RegisterRestaurant() {
             </Col>
           </Row>
         </FormGroup>
-        <FormGroup >
-          
-        </FormGroup>
+        <FormGroup></FormGroup>
         <FormGroup>
           <Label htmlFor="loo">Logo</Label>
           <Dropzone
             onChangeStatus={handleChangeStatus}
             accept="image/*"
             inputContent="Arraste a imagem ou clique para procurar"
-            inputWithFilesContent='Adicionar arquivos'
-            />
+            inputWithFilesContent="Adicionar arquivos"
+          />
         </FormGroup>
         <div className="registerRestaurant--button">
           <Button onClick={e => handleSubmit(e)}>
-            { spinner
-              ?
-              <Spinner size="sm" />
-              :
-              <>REGISTRAR</>
-            }
+            {spinner ? <Spinner size="sm" /> : <>REGISTRAR</>}
           </Button>
         </div>
       </Form>
-      {
-        toast
-        ?
+      {toast ? (
         <>
-          <ToastWarn
-            msg={msg}
-            toastError={toastError}
-          />
+          <ToastWarn msg={msg} toastError={toastError} />
         </>
-        :
-        null
-      }
+      ) : null}
     </Container>
   );
 }

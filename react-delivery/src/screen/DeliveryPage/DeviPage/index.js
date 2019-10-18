@@ -1,53 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import './styles.css';
+import "./styles.css";
 
 //============= Import map ============/
-import Maps from '../../../components/Maps';
+import Maps from "../../../components/Maps";
 
+import Footer from "../../../components/footer";
+import CardComment from "../../../components/cardComment";
 
-import Footer from '../../../components/footer';
-import CardComment from '../../../components/cardComment';
+import imgProfile from "../../../assets/img/empresa.png";
+import kitchen from "../../../assets/img/kitchen.jpg";
 
-import imgProfile from '../../../assets/img/empresa.png';
-import kitchen from '../../../assets/img/kitchen.jpg';
+import { getID, getToken, logout } from "../../../services/auth";
+import API from "../../../services/api";
 
+import Rating from "react-rating";
 
-import { getID, getToken, logout } from '../../../services/auth';
-import API from '../../../services/api';
+import { IoIosStarOutline, IoIosStar, IoIosBody } from "react-icons/io";
+import { MdRestaurantMenu } from "react-icons/md";
 
-import Rating from 'react-rating';
-
-import { IoIosStarOutline, IoIosStar, IoIosBody } from 'react-icons/io'; 
-import { MdRestaurantMenu } from 'react-icons/md';
-
-function DeviPage({match}) {
+function DeviPage({ match }) {
   const [restaurant, setRestaurantes] = useState({});
-
+  const [isComment, setIsComment] = useState(false);
   useEffect(() => {
-    (async function isLogin(){
+    (async function isLogin() {
       try {
-        const {data} = await API.post('/verify-token/', {
+        const { data } = await API.post("/verify-token/", {
           pk: getID(),
           token: getToken()
-        })
-        if(data){
+        });
+        if (data) {
           handleRestaurant();
-        }
-        else{
+        } else {
           logout();
           document.location.reload();
         }
-      }
-      catch(err){
+      } catch (err) {
         logout();
         document.location.reload();
       }
-    }())
-  }, [])
+    })();
+  }, []);
 
-  async function handleRestaurant(){
-    const {data} = await API.get(`/api/restaurante/${match.params.slug}`);
+  async function handleRestaurant() {
+    const { data } = await API.get(`/api/restaurante/${match.params.slug}`);
     setRestaurantes(data);
   }
 
@@ -56,16 +52,16 @@ function DeviPage({match}) {
       <div className="containerPageHeader">
         <div className="containerPage--row">
           <div className="containerPage__profilePhoto">
-            <img 
-              src={imgProfile}    
-              className="containerPage__ProfilePhoto--img" 
-              alt="Foto de perfil   de delivery" />
+            <img
+              src={imgProfile}
+              className="containerPage__ProfilePhoto--img"
+              alt="Foto de perfil   de delivery"
+            />
           </div>
           <div className="containerPage__containerInfo">
             <div className="containerPage__profileName">
-              <h3 
-                className="containerPage__profileName--name"
-                >{restaurant.nome}
+              <h3 className="containerPage__profileName--name">
+                {restaurant.nome}
               </h3>
             </div>
             <div className="containerPage__profileDesc">
@@ -73,26 +69,18 @@ function DeviPage({match}) {
                 {restaurant.descricao_longa}
               </p>
               <div className="containerPage__tags-frete">
-                <div className="containerPage--tags">
-                  tags: Açaí, Pizza
-                </div>
-                <div className="containerPage--frete">
-                  Entrega R$ 2,50
-                </div>
+                <div className="containerPage--tags">tags: Açaí, Pizza</div>
+                <div className="containerPage--frete">Entrega R$ 2,50</div>
               </div>
             </div>
           </div>
           <div className="containerPage__btnCard">
-            <button 
-              className="btn-card"
-            >
-              <MdRestaurantMenu className="iconRestaurant"/>
-              <span>
-                Cardápio
-              </span>
+            <button className="btn-card">
+              <MdRestaurantMenu className="iconRestaurant" />
+              <span>Cardápio</span>
             </button>
             <div className="containerPage__rating">
-              <Rating 
+              <Rating
                 start={0}
                 stop={5}
                 step={1}
@@ -122,18 +110,37 @@ function DeviPage({match}) {
         </div>
       </div>
       <div className="containerPage--row">
-        <div className="containerPage--comments">
-          <CardComment />
+        <div className="container--comment">
+          <h3 className="containerPage__title">Comentários</h3>
+          <div className="containerPage--comments">
+            <CardComment />
+            <CardComment />
+            <CardComment />
+            <CardComment />
+          </div>
+          <div className="containerPage--commentMore">
+            {isComment ? (
+              <>
+                <h5 class="author-comment">Jeffesson Gomes</h5>
+                <textarea class="input-comment" type=""></textarea>
+                <button class="btn-comment">Comentar</button>
+              </>
+            ) : (
+              <button
+                onClick={() => setIsComment(true)}
+                className="btn-make-comment"
+              >
+                Comentar
+              </button>
+            )}
+          </div>
         </div>
       </div>
       <div className="containerPage--row">
         <div className="containerPage--map">
           <h3 className="containerPage--map__title">Localização</h3>
           <div className="containerPage--map__map">
-            <Maps 
-              latitude={-6.26690006256104}
-              longitude={-35.2089996337891}
-            />
+            <Maps latitude={-6.26690006256104} longitude={-35.2089996337891} />
           </div>
         </div>
       </div>
@@ -141,6 +148,5 @@ function DeviPage({match}) {
     </div>
   );
 }
-
 
 export default DeviPage;
