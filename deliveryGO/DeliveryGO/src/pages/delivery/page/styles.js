@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 5,
 
   },
+
   inputComment:{
     borderRadius: 5,
     borderColor: 'black',

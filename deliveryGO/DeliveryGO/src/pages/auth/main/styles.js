@@ -43,6 +43,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     width: '100%',
   },
+  wallpaper: {
+    height: '100%',
+    width: '100%'
+  }
 });
 
 export default styles;

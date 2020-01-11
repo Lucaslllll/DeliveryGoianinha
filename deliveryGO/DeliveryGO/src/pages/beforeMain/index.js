@@ -6,6 +6,7 @@ import styles from './styles';
 import {deleteItem} from '../../services/AsyncStorage';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 
 export default function beforeMain({navigation}) {
@@ -15,18 +16,24 @@ export default function beforeMain({navigation}) {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <TouchableOpacity activeOpacity={0.80} onPress={() => handleButton('acai', 'Açaí', '#8E44AD')}  style={styles.containerButton}>
-          <Icon name="concierge-bell" size={60} color="#FFF" />
-          <Text style={styles.textButton}>Açaí</Text>
-        </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.80} onPress={() => handleButton('pizzaria', 'Pizza', '#F5B041')} style={[styles.containerButton, {backgroundColor: '#F5B041'}]}>
-          <Icon name="pizza-slice" size={60} color="#FFF" />
-          <Text style={[styles.textButton, {color: '#FFF'}]}>Pizza</Text>
-        </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.80} onPress={() => handleButton('hamburger', 'Hambúrguer', '#e3672b')} style={[styles.containerButton, {backgroundColor: '#e3672b'}]}>
-          <Icon name="hamburger" size={60} color="#FFF" />          
-          <Text style={[styles.textButton, {color: '#FFF'}]}>Hambúrguer</Text>
-        </TouchableOpacity>
+        <View style={styles.containerButtons}>
+          <TouchableOpacity activeOpacity={0.80} onPress={() => handleButton('acai', 'Açaí', '#8E44AD')}  style={styles.containerButton}>
+            <MaterialIcon name="rice" size={60} color="#FFF" />
+            <Text style={styles.textButton}>Açaí</Text>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.80} onPress={() => handleButton('pizzaria', 'Pizza', '#F1C40F')} style={[styles.containerButton, {backgroundColor: '#F1C40F'}]}>
+            <Icon name="pizza-slice" size={60} color="#FFF" />
+            <Text style={[styles.textButton, {color: '#FFF'}]}>Pizza</Text>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.80} onPress={() => handleButton('hamburger', 'Hambúrguer', '#e3672b')} style={[styles.containerButton, {backgroundColor: '#e3672b'}]}>
+            <Icon name="hamburger" size={60} color="#FFF" />          
+            <Text style={[styles.textButton, {color: '#FFF'}]}>Hambúrguer</Text>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.80} onPress={() => handleButton('aguagas', 'ÁGUA E GÁS', '#2980B9')} style={[styles.containerButton, {backgroundColor: '#2980B9'}]}>
+            <MaterialIcon name="water" size={60} color="#FFF" />          
+            <Text style={[styles.textButton, {color: '#FFF'}]}>Água e gás</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </View>
   );

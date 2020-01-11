@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   containerProfile: {
     marginVertical: 10,
     paddingVertical: 10,
-    width: "85%",
+    width: '85%',
     alignItems: 'center',
     borderWidth: 1,
     borderColor: '#DADADA',
@@ -21,9 +21,10 @@ const styles = StyleSheet.create({
     borderRadius: 120,
   },
   containerName: {
+    width: '100%',
     borderBottomColor: "#DADADA",
     borderBottomWidth: 1,
-    width: '80%',
+    paddingBottom: 10
   },
   nameProfile: {
     fontWeight: "bold",
@@ -31,23 +32,31 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     textAlign: "center",
   },
-  containerPassword: {
-    width: '90%'
+  btnConfig: {
+    borderRadius: 0,
+    backgroundColor: 'transparent',
+    paddingVertical: 15,
+    borderBottomColor: '#DADADA',
+    borderBottomWidth: 1
   },
-  containerTitlePassoword: {
-    paddingVertical: 20
+  containerConfig: {
+    width: '100%'
   },
-  titlePassword: {
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: 18,
-    textTransform: "uppercase",
-  },
-  containerInputButton: {
-    paddingVertical: 5
+  titleStyleConfig: {
+    fontSize: 15,
+    textTransform: 'uppercase',
+    letterSpacing: 0,
+    color: '#000'
   },
   containerInputButtonExit: {
-    backgroundColor: '#CB4335',
+    paddingVertical: 10,
+    borderRadius: 0,
+    backgroundColor: '#E74C3C'
+  },
+  titleStyleExit: {
+    fontWeight: 'bold',
+    fontSize: 15,
+    textTransform: 'uppercase'
   }
 });
 

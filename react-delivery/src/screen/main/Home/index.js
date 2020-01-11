@@ -103,7 +103,7 @@ export default function Home() {
         {cards.map((card) => (
           <Card 
             key={card.id}
-            cardLink={card.id} 
+            cardLink={card.slug} 
             nameCard={card.nome}
             descCard={card.descricao_breve} 
             status={card.status} 

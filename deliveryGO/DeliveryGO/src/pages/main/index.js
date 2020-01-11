@@ -28,16 +28,17 @@ export default function Home({navigation}) {
   }, [navigation]);
 
   async function loadProducts() {
-    const {data: {restaurantes}} = await API.get(`/api/filtrar_restaurante/${navigation.getParam('tag')}`);
-    restaurantes.forEach(async (delivery, index, deliverys) => {
-      const {data: {nota}} = await API.get(`/api/classificacao_restaurante_final/${delivery.slug}`);           
-      const {data: {foto}} = await API.get(`api/foto_restaurante/2`);
-      delivery.nota = nota;
-      delivery.foto = foto;
-      if(index === deliverys.length-1){
-        setProductInfo(deliverys);
-      }
-    });
+    try{
+      const {data: {restaurantes}} = await API.get(`/api/filtrar_restaurante/${navigation.getParam('tag')}`);
+      restaurantes.forEach(async (delivery, index, deliverys) => {
+        const {data: {nota}} = await API.get(`/api/classificacao_restaurante_final/${delivery.slug}`);
+        delivery.nota = nota;
+        if(index === deliverys.length-1){
+          setProductInfo(deliverys);
+        }
+      });
+    }
+    catch(err){}
   };
 
   function handleButton(e, rating){
@@ -61,6 +62,7 @@ export default function Home({navigation}) {
             <View style={styles.imageContainer}>
               <Image
                 style={styles.imageDelivery}
+                resizeMode='contain'
                 source={{
                   uri:
                     item.foto,

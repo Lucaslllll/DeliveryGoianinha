@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import API from "../../services/api";
 import { setToken, setID } from "../../services/auth";
 import { Spinner } from 'reactstrap';
-
+import {logout} from '../../services/auth';
 
 import './styles.css';
 
@@ -29,7 +29,10 @@ function Login(){
                 setID(id);
                 setRedirect(true);
             }else{
-                
+                logout();
+                setToken(token);
+                setID(id);
+                setRedirect(true);
             }
         }
         catch(err){

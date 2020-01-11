@@ -39,6 +39,11 @@ target 'DeliveryGO' do
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
 
+  pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
+
+
+  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
   target 'DeliveryGOTests' do
     inherit! :search_paths
     # Pods for testing

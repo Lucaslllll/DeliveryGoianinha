@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react';
 
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 
 import {Button, SocialIcon} from 'react-native-elements';
 
 import {getData} from '../../../services/AsyncStorage';
+
+import wallpaper from '../../../assets/img/pizza.jpg';
 
 import styles from './styles';
 
@@ -18,30 +20,28 @@ export default function main({navigation}) {
       navigation.navigate('beforeMain');
     }
   }
-  function handleLogin() {
-    navigation.navigate('Login');
-  }
   function handleRegister() {
-    navigation.navigate('Register');
+    navigation.navigate('Email');
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titleLogin}>Crie sua conta de graça</Text>
+      <Image 
+        resizeMode='contain'
+        style={styles.wallpaper} 
+        source={wallpaper} 
+      />
+      <Text style={styles.titleLogin}>Falta pouco para matar sua fome!</Text>
       <Text style={styles.forget}>
-        Faça sua conta para poder acessar todas as lanchonetes da sua região!
+        Como deseja continuar?
       </Text>
       <Button
         containerStyle={styles.containerButton}
         buttonStyle={styles.buttonStyle}
-        title="Cadastre-se"
+        title="E-mail"
         titleStyle={styles.titleButton}
         onPress={handleRegister}
       />
-
-      <TouchableOpacity onPress={handleLogin}>
-        <Text style={styles.forget}>Tenho uma conta</Text>
-      </TouchableOpacity>
       {/* <SocialIcon
         title="Entre com o Facebook"
         button

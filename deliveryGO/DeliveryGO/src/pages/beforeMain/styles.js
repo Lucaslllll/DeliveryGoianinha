@@ -1,18 +1,27 @@
 import {StyleSheet} from 'react-native';
 
+import { Dimensions } from 'react-native';
+
 const styles = StyleSheet.create({
   container: {
-    
+    flex: 1,    
+  },
+  containerButtons:{
+    flexWrap: 'wrap',
+    flexDirection: 'row',
   },
   containerButton: {
     alignItems: 'center',
-    paddingVertical: '14.09%',
     backgroundColor: '#8E44AD',
+    width: Dimensions.get('window').width/2,
+    height: Dimensions.get('window').height/2,
+    paddingHorizontal: 10,
+    justifyContent: 'center',
   },
   textButton: {
     textAlign: 'center',
     textTransform: 'uppercase',
-    fontSize: 30,
+    fontSize: 20,
     color: '#FFF',
     fontWeight: 'bold',
   }

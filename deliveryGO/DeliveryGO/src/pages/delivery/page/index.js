@@ -38,20 +38,34 @@ export default function DeliveryPage({navigation}) {
   const [menu, setMenu] = useState([]);
   const [descricao, setDescricao] = useState('');
   const [isLoadingComment, setIsLoadingComment] = useState(false);
+  const [isBtnComment, setIsBtnComment] = useState(false);
+
   useEffect(() => {
     verify();
+    setIsBtnComment(true);
   }, []);
+
+
+  useEffect(() => {
+    if(descricao.length > 0){
+      setIsBtnComment(false);
+    }else{
+      setIsBtnComment(true);
+    }
+  }, [descricao])
 
   async function handleComment(){
     setIsLoadingComment(true);
     try{
       await API.post(`/api/comentario/`, {
-        titulo: '',
+        titulo: await getData('@USER_ID'),
         descricao: descricao,
         autor: await getData('@USER_ID'),
-        restaurante: menu.restaurante 
+        restaurante: delivery.id
       })
+      setDescricao('');
       setIsLoadingComment(false);
+      loadComment();
    }catch(err){
     setIsLoadingComment(false);
    }
@@ -67,12 +81,22 @@ export default function DeliveryPage({navigation}) {
     }
   };
   
-  async function loadDelivery(){
-    const { data } = await API.get(`/api/restaurante/${navigation.getParam('slug')}`);
-    const {data: {comentarios}} = await API.get(`/api/pegar_comentarios/joca`);
+  async function loadComment(){
+    const {data: {comentarios}} = await API.get(`/api/pegar_comentarios/${navigation.getParam('slug')}`);
+    setComments(comentarios);
+
+  }
+
+  async function loadMenu(){
     const {data: {cardapio}} = await API.get(`/api/pegar_cardapio/${navigation.getParam('slug')}`);
     setMenu(cardapio);
-    setComments(comentarios);
+
+  }
+
+  async function loadDelivery(){
+    const { data } = await API.get(`/api/restaurante/${navigation.getParam('slug')}`);
+    loadComment();
+    loadMenu();
     setDelivery(data);
     setFim(data.fim);
     setInicio(data.inicio);
@@ -97,7 +121,7 @@ export default function DeliveryPage({navigation}) {
         <MenuItem 
           name={item.nome}
           img={item.foto}
-          price={item.preco}
+          price={item.preco.toFixed(2)}
           backColor={navigation.getParam('backColor')}
         />
       </View>
@@ -111,13 +135,15 @@ export default function DeliveryPage({navigation}) {
         <Image
           source={{
             uri:
-              'https://static.makeuseof.com/wp-content/uploads/2015/11/perfect-profile-picture-all-about-face.jpg',
+              'https://scontent.fnat5-1.fna.fbcdn.net/v/t31.0-8/p960x960/16300391_610733699122772_1084378475908069745_o.jpg?_nc_cat=103&_nc_ohc=mr8BEUEdK_cAQmTSyIVmNQou_x50Buv_NyySz6tDDLavIEFMzRnRo_3Yw&_nc_ht=scontent.fnat5-1.fna&oh=207f4dc3ac1a6bb2ca0ebda4f8600b12&oe=5E839E40',
           }}
           style={styles.imageComment}
         />
         <View style={styles.commentText}>
-          <Text style={styles.commentName}>{item.autor}</Text>
-        <Text style={styles.commentDesc}>{item.detalhes}</Text>
+          <View style={styles.commentTitleContainer}>
+            <Text style={styles.commentName}>{item.autor}</Text>
+          </View>
+          <Text style={styles.commentDesc}>{item.detalhes}</Text>
         </View>
       </View>
     )
@@ -125,6 +151,7 @@ export default function DeliveryPage({navigation}) {
   function loadMore() {}
   return (
     <SafeAreaView style={{flex: 1}}>
+
       <TopNav
         titleHeader={navigation.getParam('title')}
         isBack={true}
@@ -161,16 +188,16 @@ export default function DeliveryPage({navigation}) {
             <Button
               onPress={() => handleMenu()}
               icon={{
-                name: 'restaurant-menu',
+                name: '',
                 size: 22,
                 color: 'white'
               }}
-              title="CARDÁPIO"
+              title="FAZER PEDIDO"
               containerStyle={styles.containerButtonStyle}
               buttonStyle={[styles.buttonStyle, {backgroundColor: navigation.getParam('backColor')}]}
             />
             <View style={styles.containerRating}>
-              <RatingStar star={navigation.getParam('nota')} style={styles.RatingStar}/>
+              <RatingStar idR={delivery.id} star={navigation.getParam('nota')} style={styles.RatingStar}/>
             </View>
           </View>
         </View>
@@ -203,6 +230,7 @@ export default function DeliveryPage({navigation}) {
                   size: 22,
                   color: 'white'
                 }}
+                disabled={isBtnComment}
                 loading={isLoadingComment}
                 containerStyle={styles.containerButtonStyle}
                 buttonStyle={[styles.buttonStyleInputComment, {backgroundColor: navigation.getParam('backColor')}]}

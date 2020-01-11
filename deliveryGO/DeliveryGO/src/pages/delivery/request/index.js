@@ -19,6 +19,10 @@ export default function Request({navigation}) {
     navigation.navigate('Delivery');
   }
 
+  function handleMountRequest(){
+    navigation.navigate('mountRequest', {backColor: navigation.getParam('backColor')});
+  }
+
   async function loadMenu(){
     try{
       const {data: {cardapio}} = await API.get(`/api/pegar_cardapio/${navigation.getParam('slug')}`);
@@ -36,7 +40,10 @@ export default function Request({navigation}) {
             name={item.nome}
             price={item.preco}
             img={item.foto}
-            backColor={navigation.getParam('backColor')} />
+            backColor={navigation.getParam('backColor')} 
+            pressButton={handleMountRequest}
+            
+            />
         </View>
       </View>
     )

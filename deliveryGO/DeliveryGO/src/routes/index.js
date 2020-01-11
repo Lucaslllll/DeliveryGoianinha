@@ -9,8 +9,13 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 // Importing LoginStack
 import main from '../pages/auth/main';
 import Login from '../pages/auth/Login';
-import Register from '../pages/auth/Register';
 
+// Register
+import Register from '../pages/auth/Register';
+import Email from '../pages/auth/Register/email';
+import Password from '../pages/auth/Register/password';
+import ConfirmEmail from '../pages/auth/Register/confirmEmail';
+import UserName from '../pages/auth/Register/userName';
 
 // Importing Home and beforeMain
 import Home from '../pages/main';
@@ -29,11 +34,26 @@ import DeliveryPage from "../pages/delivery/page/";
 
 // importing Request
 import Request from '../pages/delivery/request/';
+import MountRequest from '../pages/delivery/mountRequest';
+import MountRequestStage2 from '../pages/delivery/mountRequest/stage2';
+
+// Importing Account Config
+import AlterPassword from '../pages/user/alterPassword'; 
+import AccountConfig from '../pages/user/accountConfig';
+import Location from '../pages/user/location';
+
+
+const RegisterStack = createStackNavigator({
+  Register: Register,
+  Email: Email,
+  ConfirmEmail: ConfirmEmail,
+  Password: Password,
+  UserName: UserName
+})
 
 const LoginStack = createStackNavigator({
   main: main,
-  Login: Login,
-  Register: Register,
+  Login: Login
 });
 
 const HomeStack = createMaterialBottomTabNavigator(
@@ -104,12 +124,37 @@ const beforeMainStack = createStackNavigator({
     navigationOptions: {
       header: null,
     }
+  },
+  mountRequest: {
+    screen: MountRequest,
+    navigationOptions: {
+      header: null
+    }
+  },
+  mountRequestStage2: {
+    screen: MountRequestStage2,
+    navigationOptions: {
+      header: null
+    }
+  },
+  configUser: {
+    screen: AccountConfig,
+    navigationOptions: {
+      header: null
+    }
+  },
+  locationUser: {
+    screen: Location
+  },
+  alterPassword: {
+      screen: AlterPassword,
   }
 })
 
 const MainStack = createSwitchNavigator({
-  beforeMain: beforeMainStack,
   Login: LoginStack,
+  Register: RegisterStack,
+  beforeMain: beforeMainStack,
   // TopNav: TopNav,
 });
 

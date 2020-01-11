@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import { SafeAreaView, ScrollView, View, Text } from "react-native";
-import { Image, Input, Button } from "react-native-elements";
+import { SafeAreaView, ScrollView, View, Text} from "react-native";
+import { Image, Button } from "react-native-elements";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import TopNav from "../../../components/topNav";
 import styles from './styles';
@@ -24,12 +24,15 @@ export default function Account({navigation}) {
 
   useEffect(() => {
     verify();
-  }, [])
+  }, [navigation])
+
+
 
   async function verify(){
     const response = await verifyUser(await getData('@USER_ID'), await getData('@USER_TOKEN'));
     if(response){
       loadUser();
+      requestLocationPermission();
     }else{
       handleLogout();
     }
@@ -38,6 +41,14 @@ export default function Account({navigation}) {
   async function handleLogout(){
     logout(await getData('@USER_ID'));
     navigation.navigate('Login');
+  }
+
+  function handleConfig(){
+    navigation.navigate('configUser');
+  }
+
+  function handleLocation(){
+    navigation.navigate('locationUser');
   }
 
   async function loadUser() {
@@ -62,36 +73,27 @@ export default function Account({navigation}) {
               <Text style={styles.nameProfile}>{user.username}</Text>
               <Text style={styles.nameProfile}>{user.email}</Text>
             </View>
-            <View style={styles.containerPassword}>
-              <View style={styles.containerTitlePassoword}>
-                <Text style={styles.titlePassword}>Alterar senha</Text>
-              </View>
-              <Input
-                containerStyle={styles.containerInputButton}
-                placeholder="Senha atual"
-                leftIcon={<Icon name="vpn-key" size={24} color="black" />}
-              />
-              <Input
-                containerStyle={styles.containerInputButton}
-                placeholder="Nova senha"
-                leftIcon={<Icon name="vpn-key" size={24} color="black" />}
-              />
-              <Input
-                containerStyle={styles.containerInputButton}
-                placeholder="Repita a nova senha"
-                leftIcon={<Icon name="vpn-key" size={24} color="black" />}
-              />
-              <Button
-                containerStyle={styles.containerInputButton}
-                title="Trocar senha"
-              />
-              <Button
-              containerStyle={styles.containerInputButton}
+            <Button
+              buttonStyle={styles.btnConfig}
+              containerStyle={styles.containerConfig}
+              title="Localização"
+              titleStyle={styles.titleStyleConfig}
+              onPress={() => handleLocation()}
+            />
+            <Button
+              buttonStyle={styles.btnConfig}
+              containerStyle={styles.containerConfig}
+              title="Configurações"
+              titleStyle={styles.titleStyleConfig}
+              onPress={() => handleConfig()}
+            />
+            <Button
+              containerStyle={styles.containerConfig}
               buttonStyle={styles.containerInputButtonExit}
+              titleStyle={styles.titleStyleExit}
               onPress={() => handleLogout()}
               title="Sair"
-              />
-            </View>
+            />
           </View>
         </View>
       </ScrollView>

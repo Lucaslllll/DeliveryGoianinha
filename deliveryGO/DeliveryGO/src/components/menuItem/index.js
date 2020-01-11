@@ -7,7 +7,7 @@ import styles from './styles';
 export default function MenuItem(props) {
   return (
     <View>
-      <TouchableOpacity activeOpacity={0.70} style={styles.containerButton}>
+      <TouchableOpacity onPress={props.pressButton} activeOpacity={0.70} style={styles.containerButton}>
         <Image 
           resizeMode="contain"
           source={{

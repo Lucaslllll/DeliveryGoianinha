@@ -56,12 +56,12 @@ const styles = StyleSheet.create({
   imageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 40,
+    paddingHorizontal: 80
   },
 
   imageDelivery: {
-    height: 100,
-    width: 120,
+    height: 120,
+    width: 120
   },
 
   containerTitle:{
@@ -78,15 +78,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   productText: {
-    justifyContent:'center',
+    justifyContent:'center'
   },
   containerDescription:{
     justifyContent: 'center',
-    flexDirection: 'row',
-    width: '100%',
+    flexDirection: 'row'
   },
   productDescription: {
-    width: '95%',
     textAlign: 'center',
     marginTop: 5,
     paddingHorizontal: 60,

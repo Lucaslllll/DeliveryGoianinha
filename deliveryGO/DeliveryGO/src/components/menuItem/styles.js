@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   imageItem: {
-    height: 192,
+    height: 187,
   },
   containerButton:{
     height: 267,
